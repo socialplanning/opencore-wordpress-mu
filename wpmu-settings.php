@@ -4,15 +4,65 @@ if( $current_site && $current_blog )
 
 $wpmuBaseTablePrefix = $table_prefix;
 
+/* TOPP section:
+   This takes the environmental variable PROXY_BASE, which should be like
+     http://original-host/SCRIPT_NAME
+   and applies it to the current request information.  That is, it overwrites
+   HTTP_HOST with original-host, and fixes up REQUEST_URI to use SCRIPT_NAME.
+   The remaining PATH_INFO is determined by looking for VirtualPathRoot in
+   the URL.  This typically goes with httpd.conf like:
+
+    RewriteEngine On
+    # %1 = scheme
+    # %2 = host
+    # %3 = SCRIPT_NAME
+    # %4 = PATH_INFO
+    RewriteCond %{REQUEST_URI} ^/VirtualHostBase/([^/]+)/([^/]+)/VirtualHostRoot/(.*)/VirtualPathRoot/(.*)
+    RewriteRule .* /%4 [PT,E=PROXY_BASE:%1://%2/%3]
+
+   The server may be proxied to like:
+
+    RewriteRule ^/blog(.*) http://localhost:8090/VirtualHostBase/http/%{HTTP_HOST}/VirtualHostRoot/blog/VirtualPathRoot$1 [P]
+
+   This saves all the request path and host information, except for
+   the scheme, for which there is no clear standard for expressing it
+   in the CGI environment.  (FIXME: further inspection might find a way)
+*/
+if ( $_SERVER['PROXY_BASE']) {
+    $scheme_pos = strpos($_SERVER['PROXY_BASE'], ':');
+    $scheme = substr($_SERVER['PROXY_BASE'], 0, $scheme_pos);
+    $extra = substr($_SERVER['PROXY_BASE'], $scheme_pos+3);
+    $path_pos = strpos($extra, '/');
+    $_SERVER['HTTP_HOST'] = substr($extra, 0, $path_pos);
+    $_ENV['HTTP_HOST'] = $_SERVER['HTTP_HOST'];
+    $tail_pos = strpos($_SERVER['REQUEST_URI'], 'VirtualPathRoot/');
+    $_SERVER['REQUEST_URI'] = substr($extra, $path_pos) . 
+        substr($_SERVER['REQUEST_URI'], $tail_pos+strlen('VirtualPathRoot'));
+    $_ENV['REQUEST_URI'] = $_SERVER['REQUEST_URI'];
+    /* echo "Parse proxy_base='{$_SERVER['PROXY_BASE']}' scheme_pos=$scheme_pos scheme='$scheme' extra='$extra' path_pos=$path_pos HOST={$_SERVER['HTTP_HOST']} REQUEST_URI={$_SERVER['REQUEST_URI']}<br>"; */
+}
+/* end TOPP section */
+
+
 $domain = addslashes( $_SERVER['HTTP_HOST'] );
+/* TOPP: Use a normalized form of the domain name, based on the 
+   X-Openplans-Project header */
+if ($_SERVER['HTTP_X_OPENPLANS_PROJECT']) {
+        $openplans_base_domain = $domain;
+	$domain = $_SERVER['HTTP_X_OPENPLANS_PROJECT'] . '.openplans.org';
+}
+/* End TOPP customization */
+
 if( substr( $domain, 0, 4 ) == 'www.' )
 	$domain = substr( $domain, 4 );
 if( strpos( $domain, ':' ) ) {
-	if( substr( $domain, -3 ) == ':80' ) {
+        /* TOPP addition ("|| true") -- we don't care about the port */
+	if( substr( $domain, -3 ) == ':80'  || true) {
 		$domain = substr( $domain, 0, -3 );
 		$_SERVER['HTTP_HOST'] = substr( $_SERVER['HTTP_HOST'], 0, -3 );
 	} else {
-		die( 'WPMU only works without the port number in the URL.' );
+		die( 'WPMU only works without the port number in the URL: '
+                    . $_SERVER['HTTP_HOST'] . '.' );
 	}
 }
 $domain = preg_replace('/:.*$/', '', $domain); // Strip ports
@@ -45,7 +95,7 @@ function wpmu_current_site() {
 				$current_site = $sites[0];
 				die( "That blog does not exist. Please try <a href='http://{$current_site->domain}{$current_site->path}'>http://{$current_site->domain}{$current_site->path}</a>" );
 			} else {
-				die( "No WPMU site defined on this host. If you are the owner of this site, please check <a href='http://trac.mu.wordpress.org/wiki/DebuggingWpmu'>Debugging WPMU</a> for further assistance." );
+				die( "No WPMU site defined on this host ('$sitedomain' from '$domain'). If you are the owner of this site, please check <a href='http://trac.mu.wordpress.org/wiki/DebuggingWpmu'>Debugging WPMU</a> for further assistance." );
 			}
 		} else {
 			$path = '/';
@@ -100,9 +150,18 @@ if( constant( 'VHOST' ) == 'yes' ) {
 	}
 }
 
+/* TOPP: put the $current_blog->domain back to what it should be */
+if ($openplans_base_domain) {
+	$current_blog->domain = $openplans_base_domain;
+}
+/* End TOPP customization */
+
 if( defined( "WP_INSTALLING" ) == false ) {
 	if( $current_site && $current_blog == null ) {
-		header( "Location: http://{$current_site->domain}{$current_site->path}wp-signup.php?new=" . urlencode( $blogname ) );
+		/* TOPP change: because we don't have self-signup, we don't redirect to that address */
+		header("Location: http://{$_SERVER[HTTP_HOST]}/?portal_status_message=The%20blog%20for%20this%20site%20has%20not%20been%20set%20up");
+		// header( "Location: http://{$current_site->domain}{$current_site->path}wp-signup.php?new=" . urlencode( $blogname ) );
+		/* End TOPP change */
 		die();
 	}
 	if( $current_blog == false || $current_site == false )
@@ -159,7 +218,7 @@ if( $blog_id == false ) {
 	} else {
 	    $msg = '';
 	}
-	die( "No Blog by that name on this system." . $msg );
+	die( "No Blog by that name ('$blogname') on this system." . $msg );
     }
 }
 
