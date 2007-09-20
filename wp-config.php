@@ -9,7 +9,8 @@ define('DB_HOST', '<<database_host>>');    // 99% chance you won't need to chang
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 define('VHOST', 'yes'); 
-/* TOPP-FIXME: ideally this would be dynamic */
+define('TOPP_SECRET_FILENAME', '<<universal/topp_secret_filename>>');
+/* TOPP-FIXME: ideally this would be dynamic, though it kind of is later */
 $base = '/blog';
 /* end TOPP settings */
 

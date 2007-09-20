@@ -1,8 +1,4 @@
 <?
-if (! $_ENV['TOPP_SECRET_FILENAME']) {
-    die('$TOPP_SECRET_FILENAME must be set');
-}
-
 function get_cookie($name) {
     $pattern = '/'.$name.'="(.*?)"|'.$name.'=([^ ;]*)/';
     $matches = array();
@@ -37,7 +33,7 @@ function check_openplans_cookie() {
 }
 
 function get_openplans_secret() {
-    $filename = $_ENV['TOPP_SECRET_FILENAME'];
+    $filename = TOPP_SECRET_FILENAME;
     return trim(file_get_contents($filename));
 }
 
