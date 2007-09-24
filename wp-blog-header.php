@@ -7,7 +7,7 @@ if ( !file_exists( dirname(__FILE__) . '/wp-config.php')
      || file_exists(dirname(__FILE__) . '/wp-setup-database.txt')) {
 	if (strpos($_SERVER['PHP_SELF'], 'wp-admin') !== false) $path = '';
 	else $path = 'wp-admin/';
-	$db_filename = dirname(__FILE__) . '/wp-setup-database.txt';
+	$db_filename = dirname(__FILE__) . '/../wp-setup-database.txt';
 	if (file_exists($db_filename)) {
 		$_POST['action'] = 'step3';
 	}
