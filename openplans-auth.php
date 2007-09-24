@@ -83,7 +83,7 @@ class Openplans_User {
     }
 }
 
-if ( !function_exists('get_userdatabylogin') ) :
+if ( !function_exists('get_userdatabylogin') ) {
   function get_userdatabylogin($user_login) {
     $user_login = sanitize_user($user_login);
     if (empty($user_login)) {
@@ -112,5 +112,5 @@ if ( !function_exists('get_userdatabylogin') ) :
     
     return $user;
   }
-endif;
+}
 ?>
