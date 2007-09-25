@@ -75,42 +75,4 @@ function auth_redirect() {
     }
 }
 
-class Openplans_User {
-    function Openplans_User($user_login) {
-        $this->user_login = $user_login;
-        $this->ID = 1;
-        $this->id = $this->ID;
-    }
-}
-
-if ( !function_exists('get_userdatabylogin') ) {
-  function get_userdatabylogin($user_login) {
-    $user_login = sanitize_user($user_login);
-    if (empty($user_login)) {
-      return false;
-    }
-    $user = wp_cache_get($user_login, 'userlogins');
-    if ($user && is_site_admin($user_login)) {
-      // I'm not sure why we do this fixup after the cache?
-      $user->user_level = 10;
-      $cap_key = $wpdb->prefix . "capabilities";
-      $user->{$cap_key} = array('administrator' => '1');
-      return $user;
-    } elseif ($user) {
-      return $user;
-    }
-    
-    $user = new Openplans_User($user_login);
-
-    if( is_site_admin( $user_login ) == true ) {
-      $user->user_level = 10;
-      $cap_key = $wpdb->prefix . 'capabilities';
-      $user->{$cap_key} = array( 'administrator' => '1' );
-    }                                                           
-    
-    wp_cache_add($user->user_login, $user, 'userlogins');
-    
-    return $user;
-  }
-}
 ?>
