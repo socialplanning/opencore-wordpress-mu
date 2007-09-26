@@ -38,8 +38,9 @@ if ( $_SERVER['PROXY_BASE']) {
     $tail_pos = strpos($_SERVER['REQUEST_URI'], 'VirtualPathRoot/');
     $_SERVER['REQUEST_URI'] = substr($extra, $path_pos) . 
         substr($_SERVER['REQUEST_URI'], $tail_pos+strlen('VirtualPathRoot'));
+    $openplans_base_path = substr($extra, $path_pos);
     $_ENV['REQUEST_URI'] = $_SERVER['REQUEST_URI'];
-    /* echo "Parse proxy_base='{$_SERVER['PROXY_BASE']}' scheme_pos=$scheme_pos scheme='$scheme' extra='$extra' path_pos=$path_pos HOST={$_SERVER['HTTP_HOST']} REQUEST_URI={$_SERVER['REQUEST_URI']}<br>"; */
+    /* echo "Parse proxy_base='{$_SERVER['PROXY_BASE']}' scheme_pos=$scheme_pos scheme='$scheme' extra='$extra' path_pos=$path_pos HOST={$_SERVER['HTTP_HOST']} base_path='$openplans_base_path' REQUEST_URI={$_SERVER['REQUEST_URI']}<br>"; */
 }
 /* end TOPP section */
 
@@ -69,9 +70,13 @@ $domain = preg_replace('/:.*$/', '', $domain); // Strip ports
 if( substr( $domain, -1 ) == '.' )
 	$domain = substr( $domain, 0, -1 );
 
+/* TOPP: use our path calculation
+   Old code:
 $path = preg_replace( '|([a-z0-9-]+.php.*)|', '', $_SERVER['REQUEST_URI'] );
 $path = str_replace ( '/wp-admin/', '/', $path );
 $path = preg_replace( '|(/[a-z0-9-]+?/).*|', '$1', $path );
+*/
+$path = $openplans_base_path;
 
 function wpmu_current_site() {
 	global $wpdb, $current_site, $domain, $path, $sites;
@@ -153,6 +158,7 @@ if( constant( 'VHOST' ) == 'yes' ) {
 /* TOPP: put the $current_blog->domain back to what it should be */
 if ($openplans_base_domain) {
 	$current_blog->domain = $openplans_base_domain;
+	$current_blog->path = $openplans_base_path;
 }
 /* End TOPP customization */
 
