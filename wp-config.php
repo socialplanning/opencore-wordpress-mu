@@ -2,14 +2,14 @@
 /* Don't try to create this file by hand. Read the README.txt and run the installer. */
 // ** MySQL settings ** //
 /* TOPP settings: */
-define('DB_NAME', '<<database>>');    // The name of the database
-define('DB_USER', '<<database_username>>');     // Your MySQL username
-define('DB_PASSWORD', '<<database_password>>'); // ...and password
-define('DB_HOST', '<<database_host>>');    // 99% chance you won't need to change this value
+define('DB_NAME', 'wordpressmu');    // The name of the database
+define('DB_USER', 'root');     // Your MySQL username
+define('DB_PASSWORD', 'root'); // ...and password
+define('DB_HOST', 'localhost');    // 99% chance you won't need to change this value
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 define('VHOST', 'yes'); 
-define('TOPP_SECRET_FILENAME', '<<universal/topp_secret_filename>>');
+define('TOPP_SECRET_FILENAME', '/usr/local/topp/var/lib/secret.txt');
 /* TOPP-FIXME: ideally this would be dynamic, though it kind of is later */
 $base = '/blog';
 /* end TOPP settings */
