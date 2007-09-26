@@ -36,8 +36,22 @@ $title = $_POST['title'];
    in this case */
 $user_id = $_POST['user_id'];
 
-wpmu_create_blog($domain, $path, $title, $user_id);
 
-echo "ok";
+$blogs = $wpdb->get_results( "SELECT blog_id FROM $wpdb->blogs WHERE domain = '$domain'", ARRAY_A);
 
+if ($blogs) {
+	header("Status: 400 Bad Request");
+	echo "Blog with domain '$domain' already exists, id={$blogs[0][blog_id]}";
+	exit(0);
+}
+
+
+$blog_id = wpmu_create_blog($domain, $path, $title, $user_id);
+
+if (! $blog_id) {
+	header("Status: 500 Server Error");
+	echo("Error creating blog");
+} else {
+	echo("Created blog ID $blog_id");
+}
 ?>
