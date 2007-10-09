@@ -10,8 +10,11 @@ class user_profile
   var $emailaddress = '';
 }
 
-require('wp-config.php');
-require('wp-includes/registration.php');
+define('WP_INSTALLING', true);
+require_once('openplans-auth.php');
+require_once('wp-config.php');
+require_once(ABSPATH . WPINC . '/wpmu-functions.php');
+require_once(ABSPATH . WPINC . '/registration.php');
 require_once('Snoopy.class.php');
 
 
@@ -94,5 +97,7 @@ function print_user($user)
   echo "password: ".$user->password.'<br>';
   echo "-----------------------<br>";
 }
+
+
 
 ?>
