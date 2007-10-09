@@ -17,24 +17,24 @@ require_once(ABSPATH . WPINC . '/wpmu-functions.php');
 require_once('Snoopy.class.php');
 
 $sig = $_POST['signature'];
-
 $domain = $_POST['domain'];
+$path = $_POST['path'];
+$title = $_POST['title'];
 $secret = get_openplans_secret();
 $expect = hash_hmac("sha1", $domain, $secret, true);
 $expect = trim(base64_encode($expect));
-echo $domain."<br>";
+
+if ($sig != $expect)
 {
   die("Signature '$sig' invalid for domain '$domain'");
 }
 
-$path = $_POST['path'];
 
 if (!$path) 
 {
   $path = '/blog';
 }
 
-$title = $_POST['title'];
 
 
 //This makes sure that a blog doesn't already exist with the name that

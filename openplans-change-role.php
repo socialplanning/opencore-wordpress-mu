@@ -63,10 +63,11 @@ if (!$checkDomain)
 
 if ($checkUser && $checkDomain)
 {
-  //echo "Remove user $username from blog $domain";
+  echo "Remove user $username from blog $domain";
   //echo "user ID $checkUser->ID";
   //echo "domain ID $checkDomain->blog_id";
   remove_user_from_blog($checkUser->ID, $checkDomain->blog_id);
 }
 
+echo "Adding user $username from blog $domain";
 add_user_to_blog($checkDomain->blog_id,$checkUser->ID, $role);
