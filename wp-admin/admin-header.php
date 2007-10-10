@@ -14,7 +14,11 @@ get_admin_page_title();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php do_action('admin_xml_ns'); ?> <?php language_attributes(); ?>>
-<head>
+
+<!-- TOPP -->
+<head id="oc-wp-admin-header">
+<!-- END TOPP -->
+
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
 <title><?php bloginfo('name') ?> &rsaquo; <?php echo wp_specialchars( strip_tags( $title ) ); ?> &#8212; WordPress</title>
 <link rel="stylesheet" href="<?php echo get_option('siteurl') ?>/wp-admin/wp-admin.css?version=<?php bloginfo('version'); ?>" type="text/css" />
@@ -42,7 +46,9 @@ else if ( isset($plugin_page) )
 do_action('admin_head');
 ?>
 </head>
-<body>
+<!-- TOPP -->
+<body id="oc-wp-admin-body">
+<!-- TOPP -->
 <div id="wphead">
 <h1><?php bloginfo('name'); ?> <span>(<a href="<?php echo get_option('home') . '/'; ?>"><?php _e('View site &raquo;') ?></a>)</span></h1>
 </div>

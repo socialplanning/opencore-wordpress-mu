@@ -207,9 +207,10 @@ function is_serialized_string($data) {
 function get_option($setting) {
 	global $wpdb, $switched, $current_blog;
 	// TOPP: Override the home option, which is dynamically calculated in wpmu-settings.php
-	if ($setting == 'home') {
+	if ($setting == 'home' || $setting == "siteurl") {
 		return "http://".$current_blog->domain.$current_blog->path;
 	}
+	
 	// END TOPP
 
 	// Allow plugins to short-circuit options.

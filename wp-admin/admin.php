@@ -19,7 +19,7 @@ require_once(ABSPATH . 'wp-admin/admin-functions.php');
 require_once(ABSPATH . 'wp-admin/admin-db.php');
 require_once(ABSPATH . WPINC . '/registration.php');
 
-auth_redirect();
+//auth_redirect();
 
 nocache_headers();
 
