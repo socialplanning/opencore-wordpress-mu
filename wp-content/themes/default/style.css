@@ -3,29 +3,60 @@ Theme Name: WordPress in OpenCore
 Theme URI: http://openplans.org/
 Description: Basic blog in OpenPlans
 Version: 0.1
-Author: Nick Grossman
+Author: Nick Grossman & Rolando Pe–ate
 */
-
 
 /* Global Layout */
 
 #oc-blog-wrapper {
-  
 }
 #oc-blog-header {
-
+  display: none;
 }
 #oc-blog-content {
   clear: both;
 }
-#oc-blog-main {
- width: 65%;
- float: left;
-}
-#oc-blog-sidebar {
-  width: 35%;
-  float: right;
-}
 #oc-blog-footer {
   clear: both;
+}
+
+/* Individual post */
+.oc-section-heading.oc-blog-date {
+}
+.oc-blog-post {
+  margin: 0.5em 0;
+  padding: 0.5em 0;
+  border-bottom: 2px solid #332F2A;
+}
+.oc-blog-headingBlock {
+  margin-bottom: 0.5em;
+}
+.oc-blog-headingBlock h3 {
+  display: inline;
+}
+.oc-blog-headingBlock h3 a {
+  text-decoration: none;
+}
+.oc-blog-headingBlock h3 a:hover {
+  text-decoration: underline;
+}
+.oc-blog-categories {
+  float: left;
+}
+.oc-blog-feedback {
+  text-align: right;
+}
+.oc-blog-comments {
+  margin-bottom: 1em;
+}
+
+/* SHOULD BE REPEATED IN OPENCORE.CSS */
+.oc-dataTable-heading, .oc-section-heading {
+	color: #fff;
+	background: #332F2A;
+	padding: 0.25em;
+	margin: 0;
+}
+cite {
+  font-style: normal;
 }
