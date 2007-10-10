@@ -2,9 +2,9 @@
 /* Don't try to create this file by hand. Read the README.txt and run the installer. */
 // ** MySQL settings ** //
 /* TOPP settings: */
-define('DB_NAME', 'wordpress');    // The name of the database
-define('DB_USER', 'wordpress');     // Your MySQL username
-define('DB_PASSWORD', 'aes2reeM'); // ...and password
+define('DB_NAME', 'wordpress_opencore');    // The name of the database
+define('DB_USER', 'root');     // Your MySQL username
+define('DB_PASSWORD', 'root'); // ...and password
 define('DB_HOST', 'localhost');    // 99% chance you won't need to change this value
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
