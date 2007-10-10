@@ -60,7 +60,10 @@ class member_profile
 
 $domain_pieces = split("\.", $domain);
 $project_name = $domain_pieces[0];
-$url_team = "http://anil:4570/openplans/projects/".$project_name."/members.xml";
+
+// XXX must point to an opencore instance running off https://svn.openplans.org/svn/opencore/branches/wordpress-sandbox
+// FIXME make configurable
+$url_team = "http://localhost:8080/openplans/projects/".$project_name."/members.xml";
 
 //echo "The project that was selected from openplans is $project_name: ";
 
