@@ -151,6 +151,11 @@ uksort($menu, "strnatcasecmp"); // make it all pretty
 
 if (! user_can_access_admin_page()) {
 	global $wpdb;
+	/* TOPP: force login if they access this without a login: */
+	auth_redirect();
+	/* TOPP redirect: */
+	header("Location: http://{$current_blog->domain}/?portal_status_message=You%20do%20not%20have%20access%20to%20this%20blog");
+	/* TOPP commenting out this:
 	// find the blog of this user first
 	$primary_blog = $wpdb->get_var( "SELECT meta_value FROM {$wpdb->usermeta} WHERE user_id = '$user_ID' AND meta_key = 'primary_blog'" );
 	if( $primary_blog ) {
@@ -160,6 +165,7 @@ if (! user_can_access_admin_page()) {
 			exit;
 		}
 	}
+	*/
 	wp_die( __('You do not have sufficient permissions to access this page.') );
 }
 
