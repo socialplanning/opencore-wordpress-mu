@@ -70,13 +70,17 @@ $domain = preg_replace('/:.*$/', '', $domain); // Strip ports
 if( substr( $domain, -1 ) == '.' )
 	$domain = substr( $domain, 0, -1 );
 
-/* TOPP: use our path calculation
-   Old code:
-$path = preg_replace( '|([a-z0-9-]+.php.*)|', '', $_SERVER['REQUEST_URI'] );
-$path = str_replace ( '/wp-admin/', '/', $path );
-$path = preg_replace( '|(/[a-z0-9-]+?/).*|', '$1', $path );
-*/
-$path = $openplans_base_path;
+
+/* TOPP: use our path calculation when available */
+if ($openplans_base_path) {
+	$path = $openplans_base_path;
+} else {
+	/* Old code: */
+	$path = preg_replace( '|([a-z0-9-]+.php.*)|', '', $_SERVER['REQUEST_URI'] );
+	$path = str_replace ( '/wp-admin/', '/', $path );
+	$path = preg_replace( '|(/[a-z0-9-]+?/).*|', '$1', $path );
+}
+/* end TOPP section */
 
 function wpmu_current_site() {
 	global $wpdb, $current_site, $domain, $path, $sites;
@@ -166,6 +170,7 @@ if( defined( "WP_INSTALLING" ) == false ) {
 	if( $current_site && $current_blog == null ) {
 		/* TOPP change: because we don't have self-signup, we don't redirect to that address */
 		header("Location: http://{$_SERVER[HTTP_HOST]}/?portal_status_message=The%20blog%20for%20this%20site%20has%20not%20been%20set%20up");
+		// TOPP FIXME: should we disable wp-signup.php?
 		// header( "Location: http://{$current_site->domain}{$current_site->path}wp-signup.php?new=" . urlencode( $blogname ) );
 		/* End TOPP change */
 		die();
