@@ -24,9 +24,9 @@
 
 <body>
 <div id="oc-blog-wrapper">
-<div id="oc-blog-header">
+<!-- <div id="oc-blog-header">
   <h1><a href="<?php bloginfo('url'); ?>/"><?php bloginfo('name'); ?></a></h1>
-</div>
+</div> -->
 
 <div id="oc-blog-content">
 <!-- end header.php -->

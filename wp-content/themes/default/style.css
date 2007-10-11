@@ -26,10 +26,14 @@ Author: Nick Grossman & Rolando Pe–ate
 .oc-blog-post {
   margin: 0.5em 0;
   padding: 0.5em 0;
-  border-bottom: 2px solid #332F2A;
 }
 .oc-blog-headingBlock {
   margin-bottom: 0.5em;
+}
+.oc-blog-headingBlock.oc-blog-postTitle {
+  border-top: 2px solid #332F2A;
+  background-color: #eee;
+  padding: 0.5em;
 }
 .oc-blog-headingBlock h3 {
   display: inline;

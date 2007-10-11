@@ -7,9 +7,11 @@
 
   <div id="search" class="oc-boxy">
    <form id="searchform" method="get" action="<?php bloginfo('home'); ?>">
-   <label for="s""><?php _e('Search: '); ?></label>
-    <input type="text" name="s" id="s" size="30" />
+   <h2><label for="s""><?php _e('Search this blog'); ?></label></h2>
+    <span class="oc-form-fieldBlock">
+    <input type="text" name="s" id="s" size="18" />&nbsp;
     <input type="submit" value="<?php _e('Search'); ?>" />
+    </span>
   </form>
   </div>
   
@@ -38,10 +40,9 @@
   </div>
   
   <div id="meta" class="oc-boxy">
-    <h2><?php _e('Meta'); ?></h2>
+    <h2><?php _e('Feeds'); ?></h2>
     <ul class="oc-plainList">
       <?php wp_register(); ?>
-      <li><?php wp_loginout(); ?></li>
       <li><a href="<?php bloginfo('rss2_url'); ?>" title="<?php _e('Syndicate this site using RSS'); ?>"><?php _e('Articles <abbr title="Really Simple Syndication">RSS</abbr>'); ?></a></li>
       <li><a href="<?php bloginfo('comments_rss2_url'); ?>" title="<?php _e('The latest comments to all posts in RSS'); ?>"><?php _e('Comments <abbr title="Really Simple Syndication">RSS</abbr>'); ?></a></li>
       <?php wp_meta(); ?>
