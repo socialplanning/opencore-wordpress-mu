@@ -28,21 +28,15 @@ $wpmuBaseTablePrefix = $table_prefix;
    the scheme, for which there is no clear standard for expressing it
    in the CGI environment.  (FIXME: further inspection might find a way)
 */
-if ( $_SERVER['PROXY_BASE']) {
-    $scheme_pos = strpos($_SERVER['PROXY_BASE'], ':');
-    $scheme = substr($_SERVER['PROXY_BASE'], 0, $scheme_pos);
-    $extra = substr($_SERVER['PROXY_BASE'], $scheme_pos+3);
-    $path_pos = strpos($extra, '/');
-    $_SERVER['HTTP_HOST'] = substr($extra, 0, $path_pos);
-    $_ENV['HTTP_HOST'] = $_SERVER['HTTP_HOST'];
-    $tail_pos = strpos($_SERVER['REQUEST_URI'], 'VirtualPathRoot/');
-    $_SERVER['REQUEST_URI'] = substr($extra, $path_pos) . 
-        substr($_SERVER['REQUEST_URI'], $tail_pos+strlen('VirtualPathRoot'));
-    $openplans_base_path = substr($extra, $path_pos);
-    $_ENV['REQUEST_URI'] = $_SERVER['REQUEST_URI'];
-    /* echo "Parse proxy_base='{$_SERVER['PROXY_BASE']}' scheme_pos=$scheme_pos scheme='$scheme' extra='$extra' path_pos=$path_pos HOST={$_SERVER['HTTP_HOST']} base_path='$openplans_base_path' REQUEST_URI={$_SERVER['REQUEST_URI']}<br>"; */
+if ($_SERVER['HTTP_X_FORWARDED_SERVER']) {
+  $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_SERVER'];
+  $_ENV['HTTP_HOST'] = $_SERVER['HTTP_HOST'];
+  $openplans_base_path = $_SERVER['HTTP_X_FORWARDED_PATH'];
+  $_SERVER['REQUEST_URI'] = $openplans_base_path . $_SERVER['REQUEST_URI'];
+  $_ENV['REQUEST_URI'] = $_SERVER['REQUEST_URI'];
+  /* echo "Parse headers X-Forwarded-Server='{$_SERVER['HTTP_X_FORWARDED_SERVER']}' X-Forwarded-Path='{$_SERVER['HTTP_X_FORWARDED_PATH']} HOST={$_SERVER['HTTP_HOST']} base_path='$openplans_base_path' REQUEST_URI={$_SERVER['REQUEST_URI']}<br>"; */
 } else {
-	die('No $PROXY_BASE is set; are you accessing WordPress directly instead of through Deliverance?');
+	die('No X-Forwarded-Server header exists; are you accessing WordPress directly instead of through Deliverance?');
 }
 /* end TOPP section */
 
@@ -162,6 +156,7 @@ if( constant( 'VHOST' ) == 'yes' ) {
 }
 
 /* TOPP: put the $current_blog->domain back to what it should be */
+/* echo "reset current_blog; base_domain='$openplans_base_domain', path='$openplans_base_path', HOST='{$_SERVER['HTTP_HOST']}', REQUEST_URI='{$_SERVER['REQUEST_URI']}' <br>\n"; */
 if ($openplans_base_domain) {
 	$current_blog->domain = $openplans_base_domain;
 	$current_blog->path = $openplans_base_path;
@@ -175,7 +170,6 @@ if( defined( "WP_INSTALLING" ) == false ) {
 		// TOPP FIXME: should we disable wp-signup.php?
 		// header( "Location: http://{$current_site->domain}{$current_site->path}wp-signup.php?new=" . urlencode( $blogname ) );
 		/* End TOPP change */
-		die();
 	}
 	if( $current_blog == false || $current_site == false )
 		is_installed();
