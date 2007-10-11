@@ -41,6 +41,8 @@ if ( $_SERVER['PROXY_BASE']) {
     $openplans_base_path = substr($extra, $path_pos);
     $_ENV['REQUEST_URI'] = $_SERVER['REQUEST_URI'];
     /* echo "Parse proxy_base='{$_SERVER['PROXY_BASE']}' scheme_pos=$scheme_pos scheme='$scheme' extra='$extra' path_pos=$path_pos HOST={$_SERVER['HTTP_HOST']} base_path='$openplans_base_path' REQUEST_URI={$_SERVER['REQUEST_URI']}<br>"; */
+} else {
+	die('No $PROXY_BASE is set; are you accessing WordPress directly instead of through Deliverance?');
 }
 /* end TOPP section */
 
