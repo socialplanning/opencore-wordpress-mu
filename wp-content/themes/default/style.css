@@ -35,6 +35,12 @@ Author: Nick Grossman & Rolando Pe–ate
   background-color: #eee;
   padding: 0.5em;
 }
+.oc-blog-headingBlock.oc-blog-comments {
+  color: #333;
+  background-color: #eee;
+  border-top: 1px solid #332F2A;
+  padding: 0.25em;
+}
 .oc-blog-headingBlock h3 {
   display: inline;
 }

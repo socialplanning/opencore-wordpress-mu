@@ -28,6 +28,8 @@ $wpmuBaseTablePrefix = $table_prefix;
    the scheme, for which there is no clear standard for expressing it
    in the CGI environment.  (FIXME: further inspection might find a way)
 */
+
+
 if ($_SERVER['HTTP_X_FORWARDED_SERVER']) {
   $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_SERVER'];
   $_ENV['HTTP_HOST'] = $_SERVER['HTTP_HOST'];
@@ -36,7 +38,10 @@ if ($_SERVER['HTTP_X_FORWARDED_SERVER']) {
   $_ENV['REQUEST_URI'] = $_SERVER['REQUEST_URI'];
   /* echo "Parse headers X-Forwarded-Server='{$_SERVER['HTTP_X_FORWARDED_SERVER']}' X-Forwarded-Path='{$_SERVER['HTTP_X_FORWARDED_PATH']} HOST={$_SERVER['HTTP_HOST']} base_path='$openplans_base_path' REQUEST_URI={$_SERVER['REQUEST_URI']}<br>"; */
 } else {
-	die('No X-Forwarded-Server header exists; are you accessing WordPress directly instead of through Deliverance?');
+  if (defined(TOPP_GLOBAL_SCRIPT))
+    {
+      die('No X-Forwarded-Server header exists; are you accessing WordPress directly instead of through Deliverance?');
+    }
 }
 /* end TOPP section */
 

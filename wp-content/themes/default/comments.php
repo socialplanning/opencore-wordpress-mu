@@ -3,7 +3,7 @@
 <?php return; endif; ?>
 
 <div class="oc-blog-comments">
-  <div class="oc-blog-headingBlock oc-feed-title oc-clearAfter">
+  <div class="oc-blog-headingBlock oc-blog-comments oc-clearAfter">
     <?php if ( comments_open() ) : ?>
     <div style="float: right;"><a href="#postcomment" title="<?php _e("Leave a comment"); ?>">Leave a comment</a></div>
     <?php endif; ?>
@@ -34,14 +34,12 @@
 <h3 id="postcomment"><?php _e('Leave a comment'); ?></h3>
 
 <?php if ( get_option('comment_registration') && !$user_ID ) : ?>
-<p>You must be <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?redirect_to=<?php the_permalink(); ?>">logged in</a> to post a comment.</p>
+<p>You must be logged in to post a comment.</p>
 <?php else : ?>
 
 <form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform">
 
 <?php if ( $user_ID ) : ?>
-
-<p>Logged in as <a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>. <a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="<?php _e('Log out of this account') ?>">Logout &raquo;</a></p>
 
 <?php else : ?>
 

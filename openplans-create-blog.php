@@ -10,8 +10,11 @@
  * Response:
  *   'ok'
  */
+define('TOPP_GLOBAL_SCRIPT', true);
+
 define('WP_INSTALLING', true);
 require_once('openplans-auth.php');
+
 require_once('wp-config.php');
 require_once(ABSPATH . WPINC . '/wpmu-functions.php');
 require_once('Snoopy.class.php');
@@ -64,8 +67,8 @@ $project_name = $domain_pieces[0];
 // XXX must point to an opencore instance running off https://svn.openplans.org/svn/opencore/branches/wordpress-sandbox
 // FIXME make configurable
 $url_team = "http://localhost:8080/openplans/projects/".$project_name."/members.xml";
-
-//echo "The project that was selected from openplans is $project_name: ";
+echo $url_team;
+echo "The project that was selected from openplans is $project_name: ";
 
 $team = array();
 $resp = _fetch_remote_file( $url_team, "admin", "admin" );
@@ -78,6 +81,7 @@ $firstAdmin = '';
 $firstAdminUserID;
 
 $currentUserNum = 0;
+
 
 foreach ($team as $user)
 {
@@ -112,7 +116,7 @@ else
   echo("Created blog ID $blog_id : ");
 }
 
-//echo "Now adding the rest of the team to the blog :";
+echo "Now adding the rest of the team to the blog :";
 
 //add each user to allow to work on the blog
 foreach ($team as $user)
@@ -130,7 +134,7 @@ foreach ($team as $user)
       $wp_role = 'administrator';
     }
   
-  //echo "Adding the user $user->username to the blog :";
+  echo "Adding the user $user->username to the blog :";
   add_user_to_blog($blog_id, $userID->ID, $wp_role);
   
 }
@@ -175,6 +179,7 @@ function _parse_team_file ($data)
   $data=eregi_replace(">"."[[:space:]]+"."<","><",$data);
   
   xml_parse_into_struct($xmlparser, $data, $vals, $index);
+  print_r($vals);
   
   foreach ($vals as $val)
     {

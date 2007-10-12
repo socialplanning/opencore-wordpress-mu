@@ -21,7 +21,7 @@ get_admin_page_title();
 
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php echo get_option('blog_charset'); ?>" />
 <title><?php bloginfo('name') ?> &rsaquo; <?php echo wp_specialchars( strip_tags( $title ) ); ?> &#8212; WordPress</title>
-<link rel="stylesheet" href="<?php echo get_option('siteurl') ?>/wp-admin/wp-admin.css?version=<?php bloginfo('version'); ?>" type="text/css" />
+<link rel="stylesheet" href="<?php bloginfo('home') ?>/wp-admin/wp-admin.css?version=<?php bloginfo('version'); ?>" type="text/css" />
 <?php if ( ('rtl' == $wp_locale->text_direction) ) : ?>
 <link rel="stylesheet" href="<?php echo get_option('siteurl') ?>/wp-admin/rtl.css?version=<?php bloginfo('version'); ?>" type="text/css" />
 <?php endif; ?> 
@@ -45,6 +45,68 @@ else if ( isset($plugin_page) )
 	do_action('admin_head-' . $plugin_page);
 do_action('admin_head');
 ?>
+<style type="text/css">
+a {
+  border-bottom: none !important;
+}
+h2 {
+  font-weight: bold !important;
+  border-bottom: 1px dotted #ccc !important;
+  padding-bottom: 0.25em !important;
+}
+legend {
+  font-family: Arial, Helvetica, Verdana, sans-serif !important;
+}
+#oc-content-container {
+  padding-top: 0 !important;
+}
+#wphead, #user_info, #minisub, iframe#uploading {
+  display: none;
+}
+#adminmenu, #submenu {
+  background-color: #332F2A !important;
+  border-top: none !important;
+  padding: 0.25em !important;
+}
+#adminmenu a, #submenu a {
+  font-size: 10px !important;
+  font-weight: bold !important;
+  padding: 0.25em 0.5em !important;
+}
+#adminmenu a {
+  color: #fff !important;
+}
+#adminmenu a:hover, #adminmenu a.current {
+  background-color: #EB852B !important;
+  border: none !important;
+  color: #fff !important;
+  padding: 0.25em 0.5em !important;
+  text-decoration: none !important;
+}
+#submenu, #minisub {
+  background-color: #fff !important;
+}
+#submenu a {
+  color: #333 !important;
+}
+#submenu a:hover, #submenu a.current {
+  background-color: #fff !important;
+  border: none !important;
+  color: #EB852B !important;
+}
+.wrap {
+  margin: 0.5em 0 !important;
+}
+#poststuff {
+  margin-right: 1em !important;
+}
+#poststuff #moremeta {
+  float: right !important;
+  margin: 0 0 0 2em !important;
+  position: relative !important;
+  right: 0 !important;
+}
+</style>
 </head>
 <!-- TOPP -->
 <body id="oc-wp-admin-body">
