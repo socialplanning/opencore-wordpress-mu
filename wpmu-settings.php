@@ -128,7 +128,7 @@ function wpmu_current_site() {
 	}
 	return $current_site;
 }
-
+global $wpdb;
 $wpdb->hide_errors();
 $sites = $wpdb->get_results( "SELECT * FROM $wpdb->site" ); // usually only one site
 if( count( $sites ) == 1 ) {

@@ -15,6 +15,7 @@ define('TOPP_GLOBAL_SCRIPT', true);
 define('WP_INSTALLING', true);
 require_once('openplans-auth.php');
 
+//require_once('wpmu-settings.php');
 require_once('wp-config.php');
 require_once(ABSPATH . WPINC . '/wpmu-functions.php');
 require_once('Snoopy.class.php');
@@ -23,9 +24,12 @@ $sig = $_POST['signature'];
 $domain = $_POST['domain'];
 $path = $_POST['path'];
 $title = $_POST['title'];
+$membersXML = $_POST['members'];
 $secret = get_openplans_secret();
 $expect = hash_hmac("sha1", $domain, $secret, true);
 $expect = trim(base64_encode($expect));
+
+//die (print_r($_POST));
 
 if ($sig != $expect)
 {
@@ -66,13 +70,16 @@ $project_name = $domain_pieces[0];
 
 // XXX must point to an opencore instance running off https://svn.openplans.org/svn/opencore/branches/wordpress-sandbox
 // FIXME make configurable
-$url_team = "http://localhost:8080/openplans/projects/".$project_name."/members.xml";
-echo $url_team;
-echo "The project that was selected from openplans is $project_name: ";
+//$url_team = "http://localhost:4570/openplans/projects/".$project_name."/members.xml";
+//echo $url_team;
+//echo "The project that was selected from openplans is $project_name: ";
 
 $team = array();
-$resp = _fetch_remote_file( $url_team, "admin", "admin" );
-$team = _parse_team_file($resp->results);
+//$resp = _fetch_remote_file( $url_team, "admin", "admin" );
+//$team = _parse_team_file($resp->results);
+$team = _parse_team_file($membersXML);
+
+//die($team);
 
 //check to see if all the users are in the wp table and find the first
 //administrator
@@ -135,10 +142,13 @@ foreach ($team as $user)
     }
   
   echo "Adding the user $user->username to the blog :";
-  add_user_to_blog($blog_id, $userID->ID, $wp_role);
-  
+  add_user_to_blog($blog_id, $userID->ID, $wp_role);  
 }
 
+//echo ("SELECT option_value FROM $wpdb->options WHERE option_name = 'siteurl' ");
+//global $current_blog;
+//echo ":".$current_blog->domain.":";
+//echo ":".$current_blog->path.":";
 
 ###############FUNCTIONS DEFS#####################
 
@@ -179,24 +189,28 @@ function _parse_team_file ($data)
   $data=eregi_replace(">"."[[:space:]]+"."<","><",$data);
   
   xml_parse_into_struct($xmlparser, $data, $vals, $index);
-  print_r($vals);
+  //die(print_r($vals));
   
   foreach ($vals as $val)
     {
+      //die ($val[tag]);
+      
       if ($val[type] == "open" || $val[type] == "complete")
 	{
 	  
 	  $currentMemberNumber = sizeof ($return_team) - 1;
 	  $currentTeamNumber = sizeof ( $return_team[$currentMemberNumber] ) - 1;
-	  
 	  switch ($val[tag])
 	    {
 	    case ("MEMBER"):
+	      //die ("got a member");
 	      array_push($return_team, new member_profile());
 	      break;
 	    case ("ID"):
+	      //die ("got an id");
 	      $return_team[$currentMemberNumber]->username = $val[value];
 	      $return_team[$currentMemberNumber]->teams[$project_name] = array();
+	      //die(print_r($return_team));
 	      break;
 	    case ("ROLE"):
 	      array_push($return_team[$currentMemberNumber]->teams[$project_name], $val[value]);
@@ -206,6 +220,8 @@ function _parse_team_file ($data)
 	}
       
     }
+
+  //die(print_r($return_team));
   
   xml_parser_free($xmlparser);	
   
