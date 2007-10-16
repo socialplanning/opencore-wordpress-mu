@@ -14,6 +14,7 @@ include('admin-header.php');
 <p class="submit"><input type="submit" name="Submit" value="<?php _e('Update Options &raquo;') ?>" /></p>
 <?php if ( get_pages() ): ?>
 <fieldset class="options"> 
+<!--
 <legend><?php _e('Front Page') ?></legend> 
 <table width="100%" cellspacing="2" cellpadding="5" class="optiontable editform"> 
 <tr valign="top"> 
@@ -45,7 +46,7 @@ include('admin-header.php');
 </table> 
 </fieldset>
 <?php endif; ?>
-
+-->
 <fieldset class="options"> 
 <legend><?php _e('Blog Pages') ?></legend> 
 <table width="100%" cellspacing="2" cellpadding="5" class="optiontable editform"> 

@@ -48,10 +48,10 @@ if (!$checkDomain)
   exit(0);
 }
 
-if ( !(($role == 'administrator') || ($role == 'author')) )
+if ( !(($role == 'ProjectAdmin') || ($role == 'ProjectMember')) )
 {
   header("Status: 400 Bad Request");
-  echo "The only allowed roles are administrator and author";
+  echo "The only allowed roles are ProjectAdmin and ProjectMember";
   exit(0);
 }
 
@@ -60,5 +60,17 @@ if ($checkUser && $checkDomain)
   echo "Adding user user $username to blog $domain with role $role";
   echo "user ID $checkUser->ID";
   echo "domain ID $checkDomain->blog_id";
-  add_user_to_blog($checkDomain->blog_id,$checkUser->ID, $role);
+
+  $wp_role = '';
+
+  if ($role === "ProjectMember")
+    {
+      $wp_role = 'contributor';
+    }
+  if ($role === "ProjectAdmin")
+    {
+      $wp_role = 'editor';
+    }
+
+  add_user_to_blog($checkDomain->blog_id,$checkUser->ID, $wp_role);
 }

@@ -1676,7 +1676,7 @@ class delete_blog {
 	}
 
 	function admin_menu() {
-		add_submenu_page('options-general.php', __('Delete Blog'), __('Delete Blog'), 'manage_options', 'delete-blog', array(&$this, 'plugin_content'));
+	  //add_submenu_page('options-general.php', __('Delete Blog'), __('Delete Blog'), 'manage_options', 'delete-blog', array(&$this, 'plugin_content'));
 	}
 
 	function plugin_content() {

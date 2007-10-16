@@ -1,4 +1,5 @@
 <?php
+
 require_once('admin.php');
 
 $menu_perms = get_site_option( "menu_items" );

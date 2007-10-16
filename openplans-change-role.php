@@ -40,10 +40,10 @@ if ($sig != $expect)
 $checkUser = $wpdb->get_row("SELECT * FROM $wpdb->users WHERE user_login = '$username'");
 $checkDomain = $wpdb->get_row("SELECT * FROM $wpdb->blogs WHERE domain = '$domain'");
 
-if ( !(($role == 'administrator') || ($role == 'author')) )
+if ( !(($role == 'ProjectAdmin') || ($role == 'ProjectMember')) )
 {
   header("Status: 400 Bad Request");
-  echo "The only allowed roles are administrator and author";
+  echo "The only allowed roles are ProjectAdmin and ProjectMember";
   exit(0);
 }
 
@@ -69,5 +69,16 @@ if ($checkUser && $checkDomain)
   remove_user_from_blog($checkUser->ID, $checkDomain->blog_id);
 }
 
+$wp_role = '';
+
+if ($role === "ProjectMember")
+{
+  $wp_role = 'contributor';
+}
+if ($role === "ProjectAdmin")
+{
+  $wp_role = 'editor';
+}
+
 echo "Adding user $username from blog $domain";
-add_user_to_blog($checkDomain->blog_id,$checkUser->ID, $role);
+add_user_to_blog($checkDomain->blog_id,$checkUser->ID, $wp_role);
