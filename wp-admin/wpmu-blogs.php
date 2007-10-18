@@ -1,5 +1,6 @@
 <?php
 require_once('admin.php');
+require_once('../wpmu-settings.php');
 
 $title = __('WPMU Admin: Blogs');
 $parent_file = 'wpmu-admin.php';
@@ -433,11 +434,20 @@ foreach($posts_columns as $column_name=>$column_display_name) {
 		}
 		?></td>
 		<?php
-		break;
-
+		      break;
+		
 	case 'control_view':
+	  #TOPP CHANGE
+	  global $project;
+	  $domain_pieces = split("\.", $blog['domain']);
+	  $project_name = $domain_pieces[0];
+	  $project = '/projects/'.$project_name.'/blog/';
+	  $wpadmin = '/wp-admin/';
+	  
 		?>
-		<td valign='top'><a href="http://<?php echo $blog[ 'domain' ]. $blog[ 'path' ]; ?>" rel="permalink" class="edit"><?php _e('View'); ?></a></td>
+	  <td valign='top'><a href="http://<?php echo $current_blog->domain.$project ?>" rel="permalink" class="edit"><?php _e('View'); ?></a></td>
+		
+	  <!-- END TOPP CHANGE -->
 		<?php
 		break;
 
@@ -449,7 +459,9 @@ foreach($posts_columns as $column_name=>$column_display_name) {
 
 	case 'control_backend':
 		?>
-		<td valign='top'><?php echo "<a href='http://" . $blog[ 'domain' ] . $blog[ 'path' ] . "wp-admin/' class='edit'>" . __('Backend') . "</a>"; ?></td>
+	  <!-- TOPP CHANGE -->
+		<td valign='top'><?php echo "<a href='http://" .$current_blog->domain. $project . "wp-admin/' class='edit'>" . __('Backend') . "</a>"; ?></td>
+																			     <!-- END TOPP CHANGE -->
 		<?php
 		break;
 

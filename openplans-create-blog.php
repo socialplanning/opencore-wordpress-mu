@@ -113,6 +113,7 @@ foreach ($team as $user)
 echo "Creating the blog with just this admin user for now $firstAdmin with id $firstAdminUserID->ID: ";
 $blog_id = wpmu_create_blog($domain, $path, $title, $firstAdminUserID->ID);
 
+
 if (!$blog_id) 
 {
   header("Status: 500 Server Error");
