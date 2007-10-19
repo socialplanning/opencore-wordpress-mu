@@ -26,7 +26,7 @@ require_once('Snoopy.class.php');
 $sig = $_POST['signature'];
 $domain = $_POST['domain'];
 $username = $_POST['username'];
-$role = $_POST['newrole'];
+$role = $_POST['role'];
 $secret = get_openplans_secret();
 $expect = hash_hmac("sha1", $username, $secret, true);
 $expect = trim(base64_encode($expect));
