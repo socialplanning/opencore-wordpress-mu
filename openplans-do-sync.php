@@ -17,19 +17,33 @@ require_once(ABSPATH . WPINC . '/wpmu-functions.php');
 require_once(ABSPATH . WPINC . '/registration.php');
 require_once('Snoopy.class.php');
 
+$secret = get_openplans_secret();
+$expect = hash_hmac("sha1", "admin", $secret, true);
+$expect = trim(base64_encode($expect));
+
+$all_members = $_POST['members'];
+$sig = $_POST['signature'];
+
+if ($sig != $expect)
+{
+  die("Signature '$sig' invalid for domain '$domain'");
+}
 
 $resp = _fetch_remote_file( $url_members, "admin", "admin" );
-$users = _parse_user_file($resp->results);
+//$users = _parse_user_file($resp->results);
+$users = _parse_user_file($all_members);
 update_wp_users_table($users);
+status_header(200);
 
 function update_wp_users_table($users)
 {
   foreach ($users as $user)
-    {
+    {      
       wpmu_create_user($user->username, $user->password, $user->emailaddress);
       //echo "added user: <br>";
       //print_user($user);
     }
+  echo "There were ".sizeof($users)." users added";
 }
 
 function _parse_user_file ($data)
