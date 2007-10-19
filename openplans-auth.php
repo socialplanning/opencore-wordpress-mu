@@ -4,6 +4,7 @@ function get_cookie($name) {
     $matches = array();
     $header = $_SERVER['HTTP_COOKIE'];
     if (get_magic_quotes_gpc()) {
+      //echo "stripping<br><br> ";
         $header = stripslashes($header);
     }
     if (! preg_match($pattern, $header, $matches)) {
@@ -17,18 +18,68 @@ function get_cookie($name) {
 }
 
 function check_openplans_cookie() {
+
+  $debug = false;
+  
     $c = get_cookie('__ac');
     if (! $c) {
         return false;
     }
+    if ($debug)
+      {
+	echo $c;
+	echo "<br>";echo "<br>";
+      }
+    $index = strpos($c, "%3D");
+    
+    $numToStrip = 0;
+    if ($index)
+      $numToStrip = (strlen($c) - $index)/3;
+    
+    if ($debug)
+      {
+	echo $numToStrip;
+	echo "<br>";echo "<br>";
+	echo "index $index";
+	echo "<br>";echo "<br>";
+      }
     $c = base64_decode($c);
+    
+    if ($debug)
+      {
+	print_r($c);
+	echo "<br>";
+	echo "<br>";
+      }
+
     list($username, $auth) = explode("\0", $c, 2);
-    # FIXME: failure?
+# FIXME: failure?
+    $auth = substr($auth, 0, strlen($auth)-$numToStrip);
+    $auth = chop($auth);
     $secret = get_openplans_secret();
     $expect = hash_hmac("sha1", $username, $secret, false);
+
+    if ($debug)
+      {
+	echo ":$expect:";
+	echo "<br>";
+	echo "<br>";
+	echo ":$auth:";
+	echo "<br>";echo "<br>";
+	echo strlen($auth);
+	echo "<br>";echo "<br>";
+	echo strlen($expect);
+	echo "<br>";echo "<br>";
+	die();
+      }
+    
     if ($auth != $expect) {
-        return false;
+      //echo ("not authenticated");
+      //die();
+      return false;
     }
+
+    //die();
     return $username;
 }
 
@@ -46,6 +97,7 @@ function get_currentuserinfo() {
         return;
     }
     $user = check_openplans_cookie();
+    //die(print_r($user));
     if ($user) {
         wp_set_current_user($user);
     } else {

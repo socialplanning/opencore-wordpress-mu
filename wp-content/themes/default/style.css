@@ -35,7 +35,7 @@ Author: Nick Grossman & Rolando Pe–ate
   background-color: #eee;
   padding: 0.5em;
 }
-.oc-blog-headingBlock.oc-blog-comments {
+.oc-blog-headingBlock {
   color: #333;
   background-color: #eee;
   border-top: 1px solid #332F2A;
@@ -58,6 +58,9 @@ Author: Nick Grossman & Rolando Pe–ate
 }
 .oc-blog-comments {
   margin-bottom: 1em;
+}
+.oc-blog-comments .oc-feed-list {
+  border: none !important;
 }
 
 /* SHOULD BE REPEATED IN OPENCORE.CSS */

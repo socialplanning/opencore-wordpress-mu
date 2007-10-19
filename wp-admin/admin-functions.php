@@ -1436,7 +1436,7 @@ function user_can_access_admin_page() {
 		}
 		return true;
 	}
-
+	
 	if ( isset( $submenu[$parent] ) ) {
 		foreach ( $submenu[$parent] as $submenu_array ) {
 			if ( isset( $plugin_page ) && ( $submenu_array[2] == $plugin_page ) ) {
@@ -1452,7 +1452,7 @@ function user_can_access_admin_page() {
 			}
 		}
 	}
-
+	
 	foreach ( $menu as $menu_array ) {
 		if ( $menu_array[2] == $parent) {
 			if ( current_user_can( $menu_array[1] ))
