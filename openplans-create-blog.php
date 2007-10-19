@@ -139,7 +139,7 @@ foreach ($team as $user)
     }
   if ($op_role === "ProjectAdmin")
     {
-      $wp_role = 'editor';
+      $wp_role = 'administrator';
     }
   
   echo "Adding the user $user->username to the blog :";

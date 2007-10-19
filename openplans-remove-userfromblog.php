@@ -19,11 +19,11 @@ require_once('Snoopy.class.php');
 
 $sig = $_POST['signature'];
 $domain = $_POST['domain'];
+$username = $_POST['username'];
 $secret = get_openplans_secret();
-$expect = hash_hmac("sha1", $domain, $secret, true);
+$expect = hash_hmac("sha1", $username, $secret, true);
 $expect = trim(base64_encode($expect));
 
-$username = $_POST['username'];
 
 if ($sig != $expect)
 {
@@ -36,20 +36,21 @@ $checkDomain = $wpdb->get_row("SELECT * FROM $wpdb->blogs WHERE domain = '$domai
 
 if (!$checkUser)
 {
-  header("Status: 400 Bad Request");
+  status_header(400);
   echo "User with name $username does not exist! :";
   exit(0);
 }
 
 if (!$checkDomain)
 {
-  header("Status: 400 Bad Request");
+  status_header(400);
   echo "Blog with domain $domain does not exist! :";
   exit(0);
 }
 
 if ($checkUser && $checkDomain)
 {
+  status_header(200);
   //echo "Remove user $username from blog $domain";
   //echo "user ID $checkUser->ID";
   //echo "domain ID $checkDomain->blog_id";

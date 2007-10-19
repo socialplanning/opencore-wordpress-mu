@@ -35,20 +35,21 @@ $checkEmail = $wpdb->get_row("SELECT user_email FROM $wpdb->users WHERE user_ema
 
 if ($checkUser)
 {
-  header("Status: 400 Bad Request");
+  status_header(400);
   echo "User with name $username already exists! :";
   exit(0);
 }
 
 if ($checkEmail)
 {
-  header("Status: 400 Bad Request");
+  status_header(400);
   echo "User with email $email already exists! :";
   exit(0);
 }
 
 if (!$checkUser && !$checkEmail)
 {
+  status_header(200);
   echo "Creating user $username: $username";
   wpmu_create_user($username, '', $email);
 }

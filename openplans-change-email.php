@@ -32,27 +32,25 @@ if ($sig != $expect)
 $email = $_POST['email'];
 
 $checkUser = $wpdb->get_row("SELECT * FROM $wpdb->users WHERE user_login = '$username'");
-$checkEmail = $wpdb->get_row("SELECT user_email FROM $wpdb->users WHERE user_email = '$email'");
+$checkEmail = $wpdb->get_row("SELECT user_email FROM $wpdb->users WHERE user_email = '$email' AND user_login != '$username'");
 
 if (!$checkUser)
 {
-  header("Status: 400 Bad Request");
+  status_header(400);
   echo "User with name $username does not exist! :";
   exit(0);
 }
 
 if ($checkEmail)
 {
-  header("Status: 400 Bad Request");
+  status_header(400);
   echo "User with email $email already exists! :";
   exit(0);
 }
 
 if ($checkUser && !$checkEmail)
 {
+  status_header(200);
   echo "Changing email for user : $username";
   $wpdb->query("UPDATE $wpdb->users SET user_email='$email' WHERE ID= $checkUser->ID;");
 }
-
-
-

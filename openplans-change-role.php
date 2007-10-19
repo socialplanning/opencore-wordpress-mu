@@ -25,12 +25,11 @@ require_once('Snoopy.class.php');
 
 $sig = $_POST['signature'];
 $domain = $_POST['domain'];
-$secret = get_openplans_secret();
-$expect = hash_hmac("sha1", $domain, $secret, true);
-$expect = trim(base64_encode($expect));
-
 $username = $_POST['username'];
 $role = $_POST['newrole'];
+$secret = get_openplans_secret();
+$expect = hash_hmac("sha1", $username, $secret, true);
+$expect = trim(base64_encode($expect));
 
 if ($sig != $expect)
 {
@@ -42,21 +41,21 @@ $checkDomain = $wpdb->get_row("SELECT * FROM $wpdb->blogs WHERE domain = '$domai
 
 if ( !(($role == 'ProjectAdmin') || ($role == 'ProjectMember')) )
 {
-  header("Status: 400 Bad Request");
+  status_header(400);
   echo "The only allowed roles are ProjectAdmin and ProjectMember";
   exit(0);
 }
 
 if (!$checkUser)
 {
-  header("Status: 400 Bad Request");
+  status_header(400);
   echo "User with name $username does not exist! :";
   exit(0);
 }
 
 if (!$checkDomain)
 {
-  header("Status: 400 Bad Request");
+  status_header(400);
   echo "Blog with domain $domain does not exist! :";
   exit(0);
 }
@@ -77,8 +76,9 @@ if ($role === "ProjectMember")
 }
 if ($role === "ProjectAdmin")
 {
-  $wp_role = 'editor';
+  $wp_role = 'administrator';
 }
 
 echo "Adding user $username from blog $domain";
+status_header(200);
 add_user_to_blog($checkDomain->blog_id,$checkUser->ID, $wp_role);
