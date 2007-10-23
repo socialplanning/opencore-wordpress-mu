@@ -64,7 +64,7 @@ legend {
   display: none;
 }
 #adminmenu, #submenu {
-  background-color: #332F2A !important;
+  background-color: #4D4945 !important;
   border-top: none !important;
   padding: 0.25em !important;
 }
@@ -105,6 +105,31 @@ legend {
   margin: 0 0 0 2em !important;
   position: relative !important;
   right: 0 !important;
+}
+
+ul#adminmenu {
+  margin: 1em 0 0 0;
+}
+ul#adminmenu li {
+  line-height: 175%;
+}
+
+#oc-content-container #moremeta .dbx-handle {
+  background: #4D4945 url('../wp-content/themes/default/images/box-head.gif');
+}
+#oc-content-container #advancedstuff h3.dbx-handle {
+  background: #fff url('../wp-content/themes/default/images/box-head-right.gif');
+}
+#oc-content-container #advancedstuff div.dbx-h-andle-wrapper {
+  background: #fff url('../wp-content/themes/default/images/box-head-left.gif');
+}
+#oc-content-container  #postcustom,
+#oc-content-container #wp-bookmarklet {
+  display: none;
+  visibility: hidden;
+}
+#oc-content-container .wrap {
+  border: none;
 }
 </style>
 </head>

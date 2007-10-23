@@ -6,9 +6,11 @@ function index_js() {
 <script type="text/javascript">
 Event.observe( window, 'load', dashboard_init, false );
 function dashboard_init() {
+  /* begin TOPP edits 
 	var update1 = new Ajax.Updater( 'incominglinks', 'index-extra.php?jax=incominglinks' );
 	var update2 = new Ajax.Updater( 'devnews', 'index-extra.php?jax=devnews' );
 	var update3 = new Ajax.Updater( 'planetnews', 'index-extra.php?jax=planetnews'	);
+  end TOPP edits */
 }
 </script>
 <?php
@@ -26,7 +28,7 @@ $today = current_time('mysql', 1);
 
 <div class="wrap">
 
-<h2><?php _e('Welcome to WordPress'); ?></h2>
+<h2><?php _e('Blog dashboard'); ?></h2>
 
 <div id="zeitgeist">
 <h2><?php _e('Latest Activity'); ?></h2>
@@ -119,13 +121,11 @@ $cat_str  = sprintf(__ngettext('%1$s <a href="%2$s" title="Categories">category<
 <ul>
 <?php if ( current_user_can('edit_posts') ) : ?>
 	<li><a href="post-new.php"><?php _e('Write a post'); ?></a></li>
+	<li><a href="edit.php"><?php _e('Edit existing posts'); ?></a></li>
 <?php endif; ?>
-	<li><a href="profile.php"><?php _e('Update your profile or change your password'); ?></a></li>
+
 <?php if ( current_user_can('manage_links') ) : ?>
 	<li><a href="link-add.php"><?php _e('Add a link to your blogroll'); ?></a></li>
-<?php endif; ?>
-<?php if ( current_user_can('switch_themes') ) : ?>
-	<li><a href="themes.php"><?php _e('Change your site&#8217;s look or theme'); ?></a></li>
 <?php endif; ?>
 </ul>
 <p><?php _e("Need help with WordPress? Please see our <a href='http://codex.wordpress.org/'>documentation</a> or visit the <a href='http://wordpress.org/support/'>support forums</a>."); ?></p>
