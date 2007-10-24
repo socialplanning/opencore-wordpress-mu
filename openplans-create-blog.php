@@ -46,13 +46,23 @@ if (!$path)
 
 //This makes sure that a blog doesn't already exist with the name that
 //is requested
-$blogs = $wpdb->get_results( "SELECT blog_id FROM $wpdb->blogs WHERE domain = '$domain'", ARRAY_A);
+$blogs = $wpdb->get_row( "SELECT blog_id FROM $wpdb->blogs WHERE domain = '$domain'");
 
 if ($blogs)
 {
-  header("Status: 400 Bad Request");
-  echo "Blog with domain '$domain' already exists, id={$blogs[0][blog_id]}: ";
-  exit(0);
+
+  if (get_blog_option($blogs->blog_id, "activated") == "false")
+    {
+      status_header(200);
+      update_blog_option($blogs->blog_id, "activated", "true");
+      exit(0);
+    }
+  else
+    {
+      status_header(400);
+      echo "Blog with domain '$domain' already exists and is activated;";
+      exit(0);
+    }
 }
 
 
@@ -95,7 +105,7 @@ foreach ($team as $user)
   $userID = $wpdb->get_row( "SELECT ID FROM $wpdb->users WHERE user_login = '$user->username'");
   if (! $userID)
     {
-      header("Status: 400 Bad Request");
+      status_header(400);
       echo "User with name $user->username does not have a blog username! :";
       exit(0);
     }
@@ -112,11 +122,11 @@ foreach ($team as $user)
 
 echo "Creating the blog with just this admin user for now $firstAdmin with id $firstAdminUserID->ID: ";
 $blog_id = wpmu_create_blog($domain, $path, $title, $firstAdminUserID->ID);
-
+add_blog_option($blog_id, "activated", "true");
 
 if (!$blog_id) 
 {
-  header("Status: 500 Server Error");
+  status_header(500);
   echo("Error creating blog");
 }
 else 
