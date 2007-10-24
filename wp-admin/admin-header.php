@@ -23,7 +23,7 @@ get_admin_page_title();
 <title><?php bloginfo('name') ?> &rsaquo; <?php echo wp_specialchars( strip_tags( $title ) ); ?> &#8212; WordPress</title>
 <link rel="stylesheet" href="<?php bloginfo('home') ?>/wp-admin/wp-admin.css?version=<?php bloginfo('version'); ?>" type="text/css" />
 <?php if ( ('rtl' == $wp_locale->text_direction) ) : ?>
-<link rel="stylesheet" href="<?php echo get_option('siteurl') ?>/wp-admin/rtl.css?version=<?php bloginfo('version'); ?>" type="text/css" />
+<link rel="stylesheet" href="<?php bloginfo('home'); ?>/wp-admin/rtl.css?version=<?php bloginfo('version'); ?>" type="text/css" />
 <?php endif; ?> 
 <script type="text/javascript">
 //<![CDATA[
