@@ -346,9 +346,17 @@ function wp_list_bookmarks($args = '') {
 				continue;
 			$output .= str_replace(array('%id', '%class'), array("linkcat-$cat->cat_ID", $class), $category_before);
 			$catname = apply_filters( "link_category", $cat->cat_name );
-			$output .= "$title_before$catname$title_after\n\t<ul>\n";
+      
+      /* TOPP removing <ul> */
+      $output .= "$title_before$catname$title_after\n\t\n";
+			$output .= _walk_bookmarks($bookmarks, $r);
+			$output .= "\n\t\n$category_after\n";
+
+/*		$output .= "$title_before$catname$title_after\n\t<ul>\n";
 			$output .= _walk_bookmarks($bookmarks, $r);
 			$output .= "\n\t</ul>\n$category_after\n";
+*/
+      /* END TOPP */
 		}
 	} else {
 		//output one single list using title_li for the title

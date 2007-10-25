@@ -5,7 +5,7 @@
 <div class="oc-blog-comments">
   <div class="oc-blog-headingBlock oc-blog-comments oc-clearAfter">
     <?php if ( comments_open() ) : ?>
-    <div style="float: right;"><a href="#postcomment" title="<?php _e("Leave a comment"); ?>">Leave a comment</a></div>
+    <div style="float: right;"><a href="#postcomment" title="<?php _e("Leave a comment"); ?>">Leave a comment &darr;</a></div>
     <?php endif; ?>
     <h3 id="comments"><?php comments_number(__('No Comments'), __('1 Comment'), __('% Comments')); ?></h3>
     <span class="oc-headingContext oc-discreetText"><?php comments_rss_link(__('<abbr class="oc-button-rss" title="Really Simple Syndication">RSS</abbr>')); ?></span>
@@ -17,7 +17,7 @@
   <?php foreach ($comments as $comment) : ?>
     <li id="comment-<?php comment_ID() ?>" class="oc-feed-item">
     <?php comment_text() ?>
-    <p><cite class="oc-discreetText"><?php comment_type(__('Comment'), __('Trackback'), __('Pingback')); ?> <?php _e('by'); ?> <?php comment_author_link() ?> on <?php comment_date() ?> at <a href="#comment-<?php comment_ID() ?>"><?php comment_time() ?></a></cite> <?php edit_comment_link(__("Edit"), ' |'); ?></p>
+    <p><cite class="oc-discreetText"><?php comment_type(__('Comment'), __('Trackback'), __('Pingback')); ?> <?php _e('by'); ?> <?php comment_author_link() ?> on <?php comment_date() ?> at <a href="#comment-<?php comment_ID() ?>"><?php comment_time() ?></a></cite> <?php edit_comment_link(__("Edit"), ' | '); ?></p>
     </li>
   
   <?php endforeach; ?>

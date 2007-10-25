@@ -21,7 +21,7 @@
    <form id="searchform" method="get" action="<?php bloginfo('home'); ?>">
    <h2><label for="s""><?php _e('Search this blog'); ?></label></h2>
     <span class="oc-form-fieldBlock">
-    <input type="text" name="s" id="s" size="18" />&nbsp;
+    <input type="text" name="s" id="s" size="33" />&nbsp;
     <input type="submit" value="<?php _e('Search'); ?>" />
     </span>
   </form>
