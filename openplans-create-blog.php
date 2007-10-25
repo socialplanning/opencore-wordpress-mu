@@ -29,6 +29,8 @@ $secret = get_openplans_secret();
 $expect = hash_hmac("sha1", $domain, $secret, true);
 $expect = trim(base64_encode($expect));
 
+
+
 //die (print_r($_POST));
 
 if ($sig != $expect)
@@ -155,6 +157,12 @@ foreach ($team as $user)
   echo "Adding the user $user->username to the blog :";
   add_user_to_blog($blog_id, $userID->ID, $wp_role);  
 }
+
+
+
+//edit fist blog post to be an openplans style welcome
+$wpdb->query("UPDATE $wpdb->posts SET post_content='Welocome to the blog of project $project_name.  This is your first post. Edit or delete it, then start blogging!' WHERE ID=1");
+
 
 //echo ("SELECT option_value FROM $wpdb->options WHERE option_name = 'siteurl' ");
 //global $current_blog;
