@@ -10,6 +10,7 @@
  *   'ok'
  */
 define('WP_INSTALLING', true);
+//define(TOPP_GLOBAL_SCRIPT, true);
 require_once('openplans-auth.php');
 require_once('wp-config.php');
 require_once(ABSPATH . WPINC . '/wpmu-functions.php');
@@ -24,12 +25,13 @@ $expect = hash_hmac("sha1", $username, $secret, true);
 $expect = trim(base64_encode($expect));
 if ($sig != $expect)
 {
+  status_header(400);
   die("Signature '$sig' invalid for domain '$username'");
 }
 
 
 $email = $_POST['email'];
-
+$home_page = $_POST['home_page'];
 $checkUser = $wpdb->get_row("SELECT user_login FROM $wpdb->users WHERE user_login = '$username'");
 $checkEmail = $wpdb->get_row("SELECT user_email FROM $wpdb->users WHERE user_email = '$email'");
 
@@ -50,9 +52,8 @@ if ($checkEmail)
 if (!$checkUser && !$checkEmail)
 {
   status_header(200);
-  echo "Creating user $username: $username";
+  echo "Creating user: $username";
   wpmu_create_user($username, '', $email);
+  //  echo "UPDATE wpdb->users SET user_url='bling' WHERE user_login = '$username' ";
+  $wpdb->query("UPDATE $wpdb->users SET user_url='$home_page' WHERE user_login = '$username' "); 
 }
-
-
-
