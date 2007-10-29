@@ -6,10 +6,11 @@
 
 	<title><?php bloginfo('name'); ?><?php wp_title(); ?></title>
 
-	<meta name="generator" content="WordPress <?php bloginfo('version'); ?>" /> <!-- leave this for stats please -->
+	<meta name="generator" content="WordPress <?php bloginfo('version'); ?>" /> 
+	<!-- leave this for stats please -->
 
 	<style type="text/css" media="screen">
-		@import url( <?php bloginfo('home'); ?>/wp-content/themes/wordpress-in-openplans/style.css );
+		@import url( <?php bloginfo('home'); ?>/wp-content/themes/openplans/style.css );
 	</style>
 
 	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="<?php bloginfo('rss2_url'); ?>" />
