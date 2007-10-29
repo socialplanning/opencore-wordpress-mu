@@ -1,0 +1,94 @@
+/*
+Theme Name: WordPress in OpenCore
+Theme URI: http://openplans.org/
+Description: Basic blog in OpenPlans
+Version: 0.1
+Author: Nick Grossman & Rolando Pe–ate
+*/
+
+/* Global Layout */
+
+#oc-blog-wrapper {
+}
+#oc-blog-header {
+  display: none;
+}
+#oc-blog-content {
+  clear: both;
+}
+#oc-blog-footer {
+  clear: both;
+}
+
+/* Individual post */
+.oc-section-heading.oc-blog-date {
+ background: none;
+ color: #000;
+ margin: 1.5em 0 0 0;
+ padding: 0;
+ font-size: 1em;
+ text-align: right;
+ color: #333;
+}
+.oc-blog-post {
+  margin: 0 0 1em;
+  padding: 0.5em 0;
+}
+.oc-blog-headingBlock {
+  margin-bottom: 0.5em;
+  margin-top: 0;
+}
+.oc-blog-headingBlock.oc-blog-postTitle {
+  border-top: 2px solid #332F2A;
+  background-color: #eee;
+  padding: .6em .5em .5em 0.5em;
+}
+.oc-blog-headingBlock {
+  color: #333;
+  background-color: #eee;
+  border-top: 1px solid #332F2A;
+  padding: 0.25em;
+}
+.oc-blog-headingBlock h3 {
+  display: inline;
+}
+.oc-blog-headingBlock h3 a {
+  text-decoration: none;
+}
+.oc-blog-headingBlock h3 a:hover {
+  text-decoration: underline;
+}
+.oc-blog-storycontent {
+  padding: 0 1em;
+}
+.oc-blog-meta {
+  border-top: 1px solid #ccc;
+  padding: 0 1em;
+}
+.oc-blog-categories {
+  float: left;
+}
+.oc-blog-feedback {
+  text-align: right;
+}
+.oc-blog-comments {
+  margin-top: 3em;
+  margin-bottom: 1em;
+}
+.oc-blog-comments .oc-feed-list {
+  border: none !important;
+}
+.oc-blog-comments .oc-feed-list li {
+  padding: 0 1em;
+}
+
+/* SHOULD BE REPEATED IN OPENCORE.CSS */
+.oc-dataTable-heading, .oc-section-heading {
+	color: #fff;
+	background: #332F2A;
+	padding: 0.25em;
+	margin: 0;
+}
+cite {
+  font-style: normal;
+}

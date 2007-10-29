@@ -1,10 +1,10 @@
 <?php get_header(); ?>
 
-	<div id="content" class="narrowcolumn">
+<div id="oc-content-main">
 
 	<?php if (have_posts()) : ?>
 
-		<h2 class="pagetitle">Search Results</h2>
+		<h1 class="pagetitle">Search Results</h1>
 
 		<div class="navigation">
 			<div class="alignleft"><?php next_posts_link('&laquo; Previous Entries') ?></div>
