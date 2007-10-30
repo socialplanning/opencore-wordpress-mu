@@ -1,7 +1,7 @@
 
 <!-- begin sidebar -->
 <div id="oc-content-sidebar">
-
+<div class="oc-boxy">
 <?php   /* Widgetized sidebar, if you have the plugin installed. */
     if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar() ) : ?>
     
@@ -16,7 +16,7 @@
       <a href="wp-admin/">Blog admin</a>
     </p>
   <?php endif; ?>
-
+</div>
   <div id="search" class="oc-boxy">
    <form id="searchform" method="get" action="<?php bloginfo('home'); ?>">
    <h2><label for="s""><?php _e('Search this blog'); ?></label></h2>

@@ -8,6 +8,7 @@ class user_profile
   var $name = '';
   var $password = '';
   var $emailaddress = '';
+  var $home_page = '';
 }
 
 define('WP_INSTALLING', true);
@@ -37,9 +38,12 @@ status_header(200);
 
 function update_wp_users_table($users)
 {
+  global $wpdb;
+
   foreach ($users as $user)
     {      
       wpmu_create_user($user->username, $user->password, $user->emailaddress);
+      $wpdb->query("UPDATE $wpdb->users SET user_url='$user->home_page' WHERE user_login = '$user->username' ");
       //echo "added user: <br>";
       //print_user($user);
     }
@@ -75,7 +79,11 @@ function _parse_user_file ($data)
 	    }
 	  if ($val[tag] == "EMAIL")
 	    {
-	      $users[$currentSize]->emailaddress = $val[value];
+	      $users[$currentSize]->emailaddress = $val[value];	      
+	    }
+	  if ($val[tag] == "HOME_PAGE")
+	    {
+	      $users[$currentSize]->home_page = $val[value];	      
 	      $currentSize = $currentSize+1;
 	    }
 	}
@@ -109,6 +117,7 @@ function print_user($user)
   echo "name: ".$user->name.'<br>';
   echo "email: ".$user->emailaddress.'<br>';
   echo "password: ".$user->password.'<br>';
+  echo "home_page: ".$user->home_page.'<br>';
   echo "-----------------------<br>";
 }
 

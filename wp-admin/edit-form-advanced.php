@@ -156,7 +156,7 @@ endforeach;
 <?php } ?>
 </legend>
 
-	<?php the_editor($post->post_content); ?>
+<?php the_editor($post->post_content); ?>
 </fieldset>
 
 <?php echo $form_pingback ?>

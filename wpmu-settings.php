@@ -1,6 +1,8 @@
 <?php
 if( $current_site && $current_blog )
-	return;
+{
+  return;
+}
 
 $wpmuBaseTablePrefix = $table_prefix;
 
@@ -71,8 +73,8 @@ $domain = preg_replace('/:.*$/', '', $domain); // Strip ports
 if( substr( $domain, -1 ) == '.' )
 	$domain = substr( $domain, 0, -1 );
 
-
 /* TOPP: use our path calculation when available */
+
 if ($openplans_base_path) {
 	$path = $openplans_base_path;
 } else {

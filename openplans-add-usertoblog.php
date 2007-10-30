@@ -10,6 +10,7 @@
  *   'ok'
  */
 define('WP_INSTALLING', true);
+define('TOPP_GLOBAL_SCRIPT',true);
 require_once('openplans-auth.php');
 require_once('wp-config.php');
 require_once(ABSPATH . WPINC . '/wpmu-functions.php');
