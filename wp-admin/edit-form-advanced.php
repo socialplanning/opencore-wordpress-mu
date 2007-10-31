@@ -15,11 +15,11 @@ $messages[3] = __('Custom field deleted.');
 <link type="text/css" rel="alternate stylesheet" title="blue-metallic" href="/++resource++xinha/skins/blue-metallic/skin.css" />
 
 <style>
-.htmlarea, iframe.xinha_iframe, .xinha_textarea, #content {
+table.htmlarea {
 
-  width: 694px; height: 300px;
+    width: 100% !important;
 
-} 
+}
 </style>
 
 <script type="text/javascript">
