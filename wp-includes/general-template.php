@@ -826,6 +826,10 @@ function user_can_richedit() {
 }
 
 function the_editor($content, $id = 'content', $prev_id = 'title') {
+        // TOPP change
+  	printf('<textarea editor-type="wysiwyg" id="content" name="content" rows="10" cols="60" base="advanced">Your post</textarea>');
+  	return;
+        // end TOPP change
 	$rows = get_option('default_post_edit_rows');
 	if (($rows < 3) || ($rows > 100))
 		$rows = 12;

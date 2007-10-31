@@ -5,6 +5,34 @@ $messages[1] = __('Post updated');
 $messages[2] = __('Custom field updated');
 $messages[3] = __('Custom field deleted.');
 ?>
+
+<!-- TOPP addition -->
+<link type="text/css" rel="stylesheet" title="blue-look" href="/++resource++xinha/skins/blue-look/skin.css" />
+<link type="text/css" rel="alternate stylesheet" title="green-look" href="/++resource++xinha/skins/green-look/skin.css" />
+<link type="text/css" rel="alternate stylesheet" title="xp-blue" href="/++resource++xinha/skins/xp-blue/skin.css" />
+<link type="text/css" rel="alternate stylesheet" title="xp-green" href="/++resource++xinha/skins/xp-green/skin.css" />
+<link type="text/css" rel="alternate stylesheet" title="inditreuse" href="/++resource++xinha/skins/inditreuse/skin.css" />
+<link type="text/css" rel="alternate stylesheet" title="blue-metallic" href="/++resource++xinha/skins/blue-metallic/skin.css" />
+
+<style>
+.htmlarea, iframe.xinha_iframe, .xinha_textarea, #content {
+
+  width: 694px; height: 300px;
+
+} 
+</style>
+
+<script type="text/javascript">
+var _editor_url = "/++resource++xinha/";
+var _editor_lang = "en";
+var xinha_editor = "content";
+</script>
+<!-- END TOPP addition-->
+
+<!-- Load up the actual editor core -->
+<script type="text/javascript" src="/++resource++xinha/XinhaCore.js"></script>
+<script type="text/javascript" src="/++resource++xinha/xinhaconfig.js"></script>
+
 <?php if (isset($_GET['message'])) : ?>
 <div id="message" class="updated fade"><p><?php echo wp_specialchars($messages[$_GET['message']]); ?></p></div>
 <?php endif; ?>
@@ -205,7 +233,9 @@ if (current_user_can('upload_files')) {
 <h3 class="dbx-handle"><?php _e('Optional Excerpt') ?></h3>
 </div>
 <div class="dbx-c-ontent-wrapper">
-<div class="dbx-content"><textarea rows="1" cols="40" name="excerpt" tabindex="6" id="excerpt"><?php echo $post->post_excerpt ?></textarea></div>
+<div class="dbx-content">
+<textarea rows="1" cols="40" name="excerpt" tabindex="6" id="excerpt"><?php echo $post->post_excerpt ?></textarea></div>
+
 </div>
 </fieldset>
 </div>
