@@ -18,7 +18,7 @@ $messages[3] = __('Custom field deleted.');
 table.htmlarea {
 
     width: 100% !important;
-
+    height: 300px;
 }
 </style>
 
