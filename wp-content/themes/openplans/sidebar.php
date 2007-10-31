@@ -6,14 +6,14 @@
     if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar() ) : ?>
     
   <?php if (current_user_can('publish_posts')) : ?>
-    <a href="wp-admin/post-new.php" class="oc-banana">Write a post</a>
+    <a href="<?php bloginfo('home'); ?>/wp-admin/post-new.php" class="oc-banana">Write a post</a>
     <p style="text-align: center">
-      <a href="wp-admin/">Blog admin</a>
+      <a href="<?php bloginfo('home'); ?>/wp-admin/">Administer your blog</a>
     </p>
   <?php elseif (current_user_can('edit_posts')) : ?>
-    <a href="wp-admin/post-new.php" class="oc-banana">Submit a post</a>
+    <a href="<?php bloginfo('home'); ?>/wp-admin/post-new.php" class="oc-banana">Submit a post</a>
     <p style="text-align: center">
-      <a href="wp-admin/">Blog admin</a>
+      <a href="<?php bloginfo('home'); ?>/wp-admin/">Administer your blog</a>
     </p>
   <?php endif; ?>
 </div>
