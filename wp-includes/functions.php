@@ -1377,31 +1377,17 @@ function wp_die( $message, $title = '' ) {
 	if ( empty($title) )
 		$title = __('WordPress &rsaquo; Error');
 
-
-
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" <?php if ( function_exists('language_attributes') ) language_attributes(); ?>>
-<head>
-	<title><?php echo $title ?></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<link rel="stylesheet" href="<?php echo $admin_dir; ?>install.css" type="text/css" />
-<?php 
-if ( ( $wp_locale ) && ('rtl' == $wp_locale->text_direction) ) : ?>
-	<link rel="stylesheet" href="<?php echo $admin_dir; ?>install-rtl.css" type="text/css" />
-<?php endif; ?>
-</head>
-<body>
-<?php endif; ?>
-	<h1 id="logo"><img alt="WordPress" src="<?php echo $admin_dir; ?>images/wordpress-logo.png" /></h1>
-	<?php echo $message; ?>
 
-</body>
-</html>
+<?php endif; ?>
+ <div id="oc-content-main">
+    <?php echo $message; ?>
+</div>
 <?php
-	die();
+    die();
 }
 
+    
 function _config_wp_home($url = '') {
 	if ( defined( 'WP_HOME' ) ) 
 		return WP_HOME;
