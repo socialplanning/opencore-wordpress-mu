@@ -32,9 +32,9 @@ $blogs = $wpdb->get_row( "SELECT blog_id FROM $wpdb->blogs WHERE domain = '$doma
 
 if (get_blog_option($blogs->blog_id, "activated") == "true")
 {
+  update_blog_option($blogs->blog_id, "activated", "false");
   status_header(200);
   echo "Blog deleted successfully";
-  update_blog_option($blogs->blog_id, "activated", "false");
 }
 else
 {

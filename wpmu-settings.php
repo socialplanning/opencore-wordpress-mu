@@ -34,6 +34,9 @@ $wpmuBaseTablePrefix = $table_prefix;
 
 if ($_SERVER['HTTP_X_FORWARDED_SERVER']) {
   $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_SERVER'];
+  $forwarded_ips = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+  $forwarded_ip = $forwarded_ips[0];
+  $_SERVER['REMOTE_ADDR'] = $forwarded_ip;
   $_SERVER['REMOTE_ADDR'] = $_SERVER['HTTP_X_FORWARDED_FOR'];
   $_ENV['HTTP_HOST'] = $_SERVER['HTTP_HOST'];
   $openplans_base_path = $_SERVER['HTTP_X_FORWARDED_PATH'];
