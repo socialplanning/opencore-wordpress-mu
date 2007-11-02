@@ -21,7 +21,7 @@ case 'editcomment':
 		wp_die(__('Oops, no comment with this ID.').sprintf(' <a href="%s">'.__('Go back').'</a>!', 'javascript:history.go(-1)'));
 
 	if ( !current_user_can('edit_post', $comment->comment_post_ID) )
-		wp_die( __('You are not allowed to edit comments on this post.') );
+	  wp_die( __('You are not allowed to edit comments on this post.') );
 
 	$comment = get_comment_to_edit($comment);
 
@@ -31,8 +31,9 @@ case 'editcomment':
 
 case 'cdc':
 case 'mac':
-
-	require_once('./admin-header.php');
+	//TOPP CHANGE
+	//require_once('./admin-header.php');
+	//END TOPP CHANGE
 
 	$comment = (int) $_GET['c'];
 	$formaction = 'cdc' == $action ? 'deletecomment' : 'approvecomment';
@@ -43,7 +44,14 @@ case 'mac':
 		wp_die(__('Oops, no comment with this ID.').sprintf(' <a href="%s">'.__('Go back').'</a>!', 'edit.php'));
 
 	if ( !current_user_can('edit_post', $comment->comment_post_ID) )
-		wp_die( 'cdc' == $action ? __('You are not allowed to delete comments on this post.') : __('You are not allowed to edit comments on this post, so you cannot approve this comment.') );
+	  //TOPP CHANGE
+	  auth_redirect();
+	//wp_die( 'cdc' == $action ? __('You are not allowed to delete comments on this post.') : __('You are not allowed to edit comments on this post, so you cannot approve this comment.') );
+	//END TOPP CHANGE
+	
+	//TOPP CHANGE
+	require_once('./admin-header.php');
+	//END TOPP CHANGE
 ?>
 <div class='wrap'>
 
