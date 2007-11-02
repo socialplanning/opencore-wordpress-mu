@@ -6,8 +6,6 @@ get_header();
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-<?php the_date('','<h2 class="oc-section-heading oc-blog-date">','</h2>'); ?>
-
 <div class="oc-blog-post oc-clearAfter" id="post-<?php the_ID(); ?>">
    <div class="oc-blog-headingBlock oc-blog-postTitle">
      <h3 class="oc-blog-storytitle oc-biggestText"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
@@ -19,7 +17,7 @@ get_header();
   </div>
   <div class="oc-blog-meta">
   <div class="oc-blog-categories oc-discreetText">
-    <?php _e("Filed under:"); ?> <?php the_category(',') ?> <?php edit_post_link(__('Edit')); ?>
+    <?php _e('Filed on'); ?> <?php the_time('F jS, Y'); ?> <?php _e("under:"); ?> <?php the_category(',') ?> <?php edit_post_link(__('Edit')); ?>
   </div>
   <div class="oc-blog-feedback oc-discreetText">
     <?php wp_link_pages(); ?>
