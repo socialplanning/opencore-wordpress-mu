@@ -17,7 +17,7 @@ get_header();
   </div>
   <div class="oc-blog-meta">
   <div class="oc-blog-categories oc-discreetText">
-    <?php _e('Filed on'); ?> <?php the_time('F jS, Y'); ?> <?php _e("under:"); ?> <?php the_category(',') ?> <?php edit_post_link(__('Edit')); ?>
+    <?php _e('Filed'); ?> <?php the_time('F jS, Y'); ?> <?php _e("under"); ?> <?php the_category(',') ?> <?php edit_post_link(__('Edit')); ?>
   </div>
   <div class="oc-blog-feedback oc-discreetText">
     <?php wp_link_pages(); ?>
