@@ -52,6 +52,7 @@ Author: Nick Grossman & Rolando Pe–ate
 }
 .oc-blog-headingBlock h3 {
   display: inline;
+  line-height:1.2em;
 }
 .oc-blog-headingBlock h3 a {
   text-decoration: none;
