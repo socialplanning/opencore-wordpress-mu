@@ -43,7 +43,7 @@ case 'post':
 	break;
 
 case 'edit':
-	$title = __('Edit');
+       $title = __('Edit');
 	$editing = true;
 	$post_ID = $p = (int) $_GET['post'];
 	$post = get_post($post_ID);

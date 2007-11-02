@@ -127,4 +127,72 @@ function auth_redirect() {
     }
 }
 
+function check_ajax_referer() {
+
+  $cookie = explode('; ', urldecode(empty($_POST['cookie']) ? $_GET['cookie'] : $_POST['cookie']));
+  $opCookie = explode('; ', $test);
+  $opCookie = $opCookie[1];
+  $opCookie = explode('=', $opCookie);
+  $c = $opCookie[1];
+
+    if (! $c) {
+        return false;
+    }
+    if ($debug)
+      {
+	echo $c;
+	echo "<br>";echo "<br>";
+      }
+    $index = strpos($c, "%3D");
+    
+    $numToStrip = 0;
+    if ($index)
+      $numToStrip = (strlen($c) - $index)/3;
+    
+    if ($debug)
+      {
+	echo $numToStrip;
+	echo "<br>";echo "<br>";
+	echo "index $index";
+	echo "<br>";echo "<br>";
+      }
+    $c = base64_decode($c);
+    
+    if ($debug)
+      {
+	print_r($c);
+	echo "<br>";
+	echo "<br>";
+      }
+
+    list($username, $auth) = explode("\0", $c, 2);
+# FIXME: failure?
+    $auth = substr($auth, 0, strlen($auth)-$numToStrip);
+    $auth = chop($auth);
+    $secret = get_openplans_secret();
+    $expect = hash_hmac("sha1", $username, $secret, false);
+
+    if ($debug)
+      {
+	echo ":$expect:";
+	echo "<br>";
+	echo "<br>";
+	echo ":$auth:";
+	echo "<br>";echo "<br>";
+	echo strlen($auth);
+	echo "<br>";echo "<br>";
+	echo strlen($expect);
+	echo "<br>";echo "<br>";
+	die();
+      }
+    
+    if ($auth != $expect) {
+      //echo ("not authenticated");
+      //die();
+      return false;
+    }
+
+
+  return true;
+}
 ?>

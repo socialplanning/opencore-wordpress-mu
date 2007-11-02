@@ -400,7 +400,6 @@ function wp_delete_post($postid = 0) {
 
 	if ( !$post = $wpdb->get_row("SELECT * FROM $wpdb->posts WHERE ID = $postid") )
 		return $post;
-
 	if ( 'attachment' == $post->post_type )
 		return wp_delete_attachment($postid);
 
