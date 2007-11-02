@@ -121,7 +121,7 @@ function auth_redirect() {
             $domain = $_SERVER['HTTP_HOST'];
         }
         $current_url = "http://$domain{$_SERVER['REQUEST_URI']}";
-        $dest = "http://$domain/login?came_from=" . urlencode($current_url);
+        $dest = "http://$domain/login?came_from=" . urlencode($current_url) . "&portal_status_message=Please%20sign%20in%20to%20access%20this%20page";
         wp_redirect($dest);
         exit();
     }
