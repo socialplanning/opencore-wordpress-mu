@@ -130,13 +130,14 @@ function auth_redirect() {
 function check_ajax_referer() {
 
   $cookie = explode('; ', urldecode(empty($_POST['cookie']) ? $_GET['cookie'] : $_POST['cookie']));
-  $opCookie = explode('; ', $test);
-  $opCookie = $opCookie[1];
+  $opCookie = $cookie[1];
   $opCookie = explode('=', $opCookie);
   $c = $opCookie[1];
-
+  $ctemp = explode('"', $c);
+  $c = $ctemp[1];
+ 
     if (! $c) {
-        return false;
+      die('-1');
     }
     if ($debug)
       {
@@ -157,13 +158,6 @@ function check_ajax_referer() {
 	echo "<br>";echo "<br>";
       }
     $c = base64_decode($c);
-    
-    if ($debug)
-      {
-	print_r($c);
-	echo "<br>";
-	echo "<br>";
-      }
 
     list($username, $auth) = explode("\0", $c, 2);
 # FIXME: failure?
@@ -172,27 +166,15 @@ function check_ajax_referer() {
     $secret = get_openplans_secret();
     $expect = hash_hmac("sha1", $username, $secret, false);
 
-    if ($debug)
-      {
-	echo ":$expect:";
-	echo "<br>";
-	echo "<br>";
-	echo ":$auth:";
-	echo "<br>";echo "<br>";
-	echo strlen($auth);
-	echo "<br>";echo "<br>";
-	echo strlen($expect);
-	echo "<br>";echo "<br>";
-	die();
-      }
-    
     if ($auth != $expect) {
       //echo ("not authenticated");
       //die();
-      return false;
+      die('-1');
     }
 
-
+    do_action('check_ajax_referer');
   return true;
+
 }
+
 ?>
