@@ -44,9 +44,12 @@ case 'mac':
 		wp_die(__('Oops, no comment with this ID.').sprintf(' <a href="%s">'.__('Go back').'</a>!', 'edit.php'));
 
 	if ( !current_user_can('edit_post', $comment->comment_post_ID) )
+	  {
 	  //TOPP CHANGE
 	  auth_redirect();
-	//wp_die( 'cdc' == $action ? __('You are not allowed to delete comments on this post.') : __('You are not allowed to edit comments on this post, so you cannot approve this comment.') );
+	  header("Location: http://{$current_blog->domain}/?portal_status_message=You%20do%20not%20have%20access%20to%20this%20blog");
+	  wp_die( 'cdc' == $action ? __('You are not allowed to delete comments on this post.') : __('You are not allowed to edit comments on this post, so you cannot approve this comment.') );
+	  }
 	//END TOPP CHANGE
 	
 	//TOPP CHANGE
