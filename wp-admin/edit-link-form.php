@@ -77,7 +77,7 @@ function xfn_check($class, $value = '', $type = 'check') {
 </div>
 </div>
 
-<table class="editform" width="100%" cellspacing="2" cellpadding="5">
+<table class="editform" cellspacing="2" cellpadding="5">
 <tr>
 <th scope="row" valign="top"><label for="link_name"><?php _e('Name:') ?></label></th>
 <td><input type="text" name="link_name" value="<?php echo $link->link_name; ?>" style="width: 95%" /></td>
@@ -98,6 +98,7 @@ function xfn_check($class, $value = '', $type = 'check') {
 
 <div id="advancedstuff" class="dbx-group" >
 
+<!-- TOPP
 <fieldset id="xfn" class="dbx-box">
 <h3 class="dbx-handle"><?php _e('Link Relationship (XFN)') ?></h3>
 <div class="dbx-content">
@@ -210,7 +211,7 @@ function xfn_check($class, $value = '', $type = 'check') {
 </table>
 </div>
 </fieldset>
-
+END TOPP EDITS -->
 <fieldset id="advanced" class="dbx-box">
 <h3 class="dbx-handle"><?php _e('Advanced') ?></h3>
 <div class="dbx-content">
