@@ -79,6 +79,12 @@ Author URI: http://www.openplans.org/people/nickyg
          {
           width: 450px;
          }
+        
+        #message p 
+        {
+         margin: 0;
+         padding: 3px 0px;
+        }
       </style>   
     <?php
   }
