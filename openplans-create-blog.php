@@ -162,11 +162,30 @@ foreach ($team as $user)
   add_user_to_blog($blog_id, $userID->ID, $wp_role);  
 }
 
+$titleForFirstPost = 'Example Post';
 
+$contentForFirstPost = '
+Welcome to the blog of project projectname.  This post was automatically generated to help you get started.
+
+To change this post, click the <b>Edit</b> link in the upper left corner of this post.  From there, you can edit this post or delete it entirely.
+
+To write a new post, click the big orange <b>Write a post</b> button.
+
+Check out the sidebar to the right.  Here you can find:<ul>
+<li> a list of the <b>Categories</b> used by this blog to tag and organize its posts</li>
+<li>the <b>Archives</b> where you can navigate to older posts</li>
+<li>the <b>Blogroll</b>, which can contain links to other blogs and sites related to your project</li>
+<li>
+<b>Feeds</b> that can keep you updated on any new posts or comments to the blog</li>
+</ul>
+<br>  To manage your blog posts and comments, add blogroll links, or see other advanced options, click the <b>Administer your blog</b> link just below the Write a post button.
+
+<p align="right">Click the <b>Comments</b> link below to see comments on this post.</p>
+';
 
 //edit fist blog post to be an openplans style welcome
-$wpdb->query("UPDATE $wpdb->posts SET post_content='Welocome to the blog of project $project_name.  This is your first post. Edit or delete it, then start blogging!' WHERE ID=1");
-
+$wpdb->query("UPDATE $wpdb->posts SET post_content='$contentForFirstPost' WHERE ID=1");
+$wpdb->query("UPDATE $wpdb->posts SET post_title='$titleForFirstPost' WHERE ID=1");
 
 //echo ("SELECT option_value FROM $wpdb->options WHERE option_name = 'siteurl' ");
 //global $current_blog;
