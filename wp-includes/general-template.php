@@ -827,8 +827,9 @@ function user_can_richedit() {
 
 function the_editor($content, $id = 'content', $prev_id = 'title') {
         // TOPP change
-  if (!$content)
+  if (!$content || !(trim($content))) {
     $content = "&nbsp;";
+  }
   	printf('<textarea editor-type="wysiwyg" id="content" name="content" rows="10" cols="60" base="advanced">%s</textarea>',$content);
   	return;
         // end TOPP change

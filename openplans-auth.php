@@ -130,12 +130,20 @@ function auth_redirect() {
 function check_ajax_referer() {
 
   $cookie = explode('; ', urldecode(empty($_POST['cookie']) ? $_GET['cookie'] : $_POST['cookie']));
-  $opCookie = $cookie[1];
+  $opCookie = '';
+  foreach ($cookie as $tasty)
+    {
+      if (stripos($tasty, "_ac"))
+	{
+	  $opCookie = $tasty;
+	}
+    }
+ 
   $opCookie = explode('=', $opCookie);
   $c = $opCookie[1];
   $ctemp = explode('"', $c);
   $c = $ctemp[1];
- 
+
     if (! $c) {
       die('-1');
     }
