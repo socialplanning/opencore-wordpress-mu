@@ -91,10 +91,12 @@ addLoadEvent(focusit);
 </div>
 </fieldset>
 
+<!-- TOPP
 <fieldset id="passworddiv" class="dbx-box">
 <h3 class="dbx-handle"><?php _e('Post Password') ?></h3> 
 <div class="dbx-content"><input name="post_password" type="text" size="13" id="post_password" value="<?php echo attribute_escape( $post->post_password ); ?>" /></div>
 </fieldset>
+-->
 
 <fieldset id="slugdiv" class="dbx-box">
 <h3 class="dbx-handle"><?php _e('Post Slug') ?></h3> 
