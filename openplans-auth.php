@@ -101,7 +101,7 @@ function get_currentuserinfo() {
     if ($user) {
         wp_set_current_user($user);
     } else {
-        wp_set_current_user(0);
+      //wp_set_current_user("");
     }
 }
 

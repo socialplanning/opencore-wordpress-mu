@@ -17,6 +17,9 @@
   <?php foreach ($comments as $comment) : ?>
   
   <li id="comment-<?php comment_ID() ?>" class="oc-feed-item">
+  <?php if ($comment->comment_approved == '0') : ?>
+  <em>Your comment is awaiting moderation.</em>
+  <?php endif; ?>
     <?php comment_text() ?>
     <p><cite class="oc-discreetText"><?php comment_type(__('Comment'), __('Trackback'), __('Pingback')); ?> <?php _e('by'); ?> <?php comment_author_link() ?> on <?php comment_date() ?> at <a href="#comment-<?php comment_ID() ?>"><?php comment_time() ?></a></cite> <?php edit_comment_link(__("Edit"), ' | '); ?></p>
     </li>
