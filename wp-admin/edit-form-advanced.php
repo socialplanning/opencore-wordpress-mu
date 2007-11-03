@@ -6,32 +6,6 @@ $messages[2] = __('Custom field updated');
 $messages[3] = __('Custom field deleted.');
 ?>
 
-<!-- TOPP addition -->
-<link type="text/css" rel="stylesheet" title="blue-look" href="/++resource++xinha/skins/blue-look/skin.css" />
-<link type="text/css" rel="alternate stylesheet" title="green-look" href="/++resource++xinha/skins/green-look/skin.css" />
-<link type="text/css" rel="alternate stylesheet" title="xp-blue" href="/++resource++xinha/skins/xp-blue/skin.css" />
-<link type="text/css" rel="alternate stylesheet" title="xp-green" href="/++resource++xinha/skins/xp-green/skin.css" />
-<link type="text/css" rel="alternate stylesheet" title="inditreuse" href="/++resource++xinha/skins/inditreuse/skin.css" />
-<link type="text/css" rel="alternate stylesheet" title="blue-metallic" href="/++resource++xinha/skins/blue-metallic/skin.css" />
-
-<style>
-table.htmlarea {
-
-    width: 100% !important;
-    height: 300px;
-}
-</style>
-
-<script type="text/javascript">
-var _editor_url = "/++resource++xinha/";
-var _editor_lang = "en";
-var xinha_editor = "content";
-</script>
-<!-- END TOPP addition-->
-
-<!-- Load up the actual editor core -->
-<script type="text/javascript" src="/++resource++xinha/XinhaCore.js"></script>
-<script type="text/javascript" src="/++resource++xinha/xinhaconfig.js"></script>
 
 <?php if (isset($_GET['message'])) : ?>
 <div id="message" class="updated fade"><p><?php echo wp_specialchars($messages[$_GET['message']]); ?></p></div>
@@ -185,10 +159,13 @@ endforeach;
 </legend>
 
 <?php the_editor($post->post_content); ?>
+
 </fieldset>
 
 <?php echo $form_pingback ?>
 <?php echo $form_prevstatus ?>
+
+
 
 
 <p class="submit">
