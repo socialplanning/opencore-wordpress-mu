@@ -145,6 +145,10 @@ endforeach;
 </div>
 </div>
 
+<!-- TOPP -->
+<div class="oc-post-edit-main" style="width: 600px; float: left;">
+<!-- END TOPP -->
+
 <fieldset id="titlediv">
 	<legend><?php _e('Title') ?></legend>
 	<div><input type="text" name="post_title" size="30" tabindex="1" value="<?php echo attribute_escape($post->post_title); ?>" id="title" /></div>
@@ -267,6 +271,10 @@ list_meta($metadata);
 <?php endif; ?>
 
 </div>
+
+<!-- TOPP -->
+</div>
+<!-- END TOPP -->
 
 </div>
 

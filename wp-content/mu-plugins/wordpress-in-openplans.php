@@ -68,6 +68,20 @@ Author URI: http://www.openplans.org/people/nickyg
 
   }
 
+  add_action('admin_head', 'oc_wp_admin_css');
+
+  function oc_wp_admin_css() {
+    ?>
+      <style type="text/css">
+        #titlediv input,
+        textarea#content,
+        textarea#excerpt
+         {
+          width: 450px;
+         }
+      </style>   
+    <?php
+  }
 
 add_action('admin_head', 'oc_xinha_head');
 add_action('wp_head', 'oc_xinha_head');
