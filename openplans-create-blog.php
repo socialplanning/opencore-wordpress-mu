@@ -168,6 +168,8 @@ $contentForFirstComment = '
 This comment was created automatically.
 If you are a project administrator, you can edit or delete this comment by clicking on the <b>Edit</b> link below.
 ';
+$authorForFirstComment = 'Site Admin';
+$urlForFirstComment = '';
 
 $contentForFirstPost = '
 Welcome to the blog of project '.$project_name.'.  This post was automatically generated to help you get started.
@@ -195,7 +197,8 @@ $wpdb->query("UPDATE $wpdb->posts SET post_title='$titleForFirstPost' WHERE ID=1
 
 
 $wpdb->query("UPDATE $wpdb->comments SET comment_content='$contentForFirstComment' WHERE comment_ID=1");
-
+$wpdb->query("UPDATE $wpdb->comments SET comment_author='$authorForFirstComment' WHERE comment_ID=1");
+$wpdb->query("UPDATE $wpdb->comments SET comment_author_url='$urlForFirstComment' WHERE comment_ID=1");
 
 //echo ("SELECT option_value FROM $wpdb->options WHERE option_name = 'siteurl' ");
 //global $current_blog;
