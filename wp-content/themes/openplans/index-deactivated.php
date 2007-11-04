@@ -9,7 +9,7 @@ get_header();
 Sorry!
 </h1>
 
-<?php if (!current_user_can('publish_posts')) :?>
+<?php if (current_user_can('publish_posts')) :?>
   <p>The blog for this project has been disabled.  You can enable it by updating your <a href="../preferences">project preferences.</a></p>
 <?php else:  ?>
   <p>There is no blog associated with this project.  Return to the <a href="../">project homepage</a>.</p>
