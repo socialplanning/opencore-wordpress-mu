@@ -19,12 +19,10 @@
   <li id="comment-<?php comment_ID() ?>" class="oc-feed-item">
     <?php comment_text() ?>
     <p><cite class="oc-discreetText"><?php comment_type(__('Comment'), __('Trackback'), __('Pingback')); ?> <?php _e('by'); ?> <?php comment_author_link() ?> on <?php comment_date() ?> at <a href="#comment-<?php comment_ID() ?>"><?php comment_time() ?></a></cite> <?php edit_comment_link(__("Edit"), ' | '); ?>
-    &nbsp; <?php if ($comment->comment_approved == '0') : ?>
+    </p>
+    <?php if ($comment->comment_approved == '0') : ?>
       <span class="oc-statusMessage">Your comment is awaiting moderation.</span>
     <?php endif; ?>
-    
-    </p>
-
     </li>
   
   <?php endforeach; ?>
