@@ -59,6 +59,17 @@
 
 <?php endif; ?>
 
+<?php 
+/****** Math Comment Spam Protection Plugin ******/
+if ( function_exists('math_comment_spam_protection') ) { 
+	$mcsp_info = math_comment_spam_protection();
+?> 	<p><input type="text" name="mcspvalue" id="mcspvalue" value="" size="22" tabindex="4" />
+	<label for="mcspvalue" style="font-size: 1.3em; font-weight: bold;"><small>Spam protection: Sum of <?php echo $mcsp_info['operand1'] . ' + ' . $mcsp_info['operand2'] . ' ?' ?></small></label>
+	<input type="hidden" name="mcspinfo" value="<?php echo $mcsp_info['result']; ?>" />
+</p>
+<?php } // if function_exists... 
+?>
+
 <!--<p><span class="oc-discreetText"><strong>XHTML:</strong> You can use these tags: <?php echo allowed_tags(); ?></span></p>-->
 
 <p><textarea name="comment" id="comment" cols="80" rows="10" tabindex="4" style="width: 500px;"></textarea></p>

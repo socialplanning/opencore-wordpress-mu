@@ -205,6 +205,26 @@ $wpdb->query("UPDATE $wpdb->comments SET comment_author_url='$urlForFirstComment
 //echo ":".$current_blog->domain.":";
 //echo ":".$current_blog->path.":";
 
+	/* Lets add some default options if they don't exist
+			If an option with the specified name already exists, no changes are made to its value
+			or to the database as a whole. add_option() can only add options, not alter them.*/
+
+	$tmp_noanswer =	'<p align="center">
+<strong>Error:</strong> Please press the back button and fill the required field for spam protection.
+</p>';
+	$tmp_wronganswer = '<p align="center">
+<strong>Error:</strong> You have entered the wrong sum in the spam protection field.
+<br />Press the back button and try again.
+</p>';
+	$optionarray_def = array(
+		'mcsp_opt_numbers'				=> '1~1, 2~2, 3~3, 4~4, 5~5, 6~6, 7~7, 8~8, 9~9, 10~10',
+		'mcsp_opt_msg_no_answer' 		=> $tmp_noanswer,
+		'mcsp_opt_msg_wrong_answer' 	=> $tmp_wronganswer,
+		'mcsp_opt_fieldname_useranswer' => 'mcspvalue',
+		'mcsp_opt_fieldname_mathresult' => 'mcspinfo',
+		);
+	add_option('plugin_mathcommentspamprotection', $optionarray_def, 'Math Comment Spam Protection Plugin Options');
+
 ###############FUNCTIONS DEFS#####################
 
 function _fetch_remote_file ($url, $username, $password,  $headers = "" )
