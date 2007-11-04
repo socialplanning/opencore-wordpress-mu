@@ -176,7 +176,7 @@ Welcome to the blog of project '.$project_name.'.  This post was automatically g
 
 To change this post, click the <b>Edit</b> link in the upper left corner of this post.  From there, you can edit this post or delete it entirely.
 
-To write a new post, click the big orange <b>Write a post</b> button.
+To write a new post, click the big orange <b>Write a post</b> button. As an adminstrator, you will be able to both write draft posts and publish them to the blog.  Members of this project who are not administrators can write posts, but not publish them.
 
 Check out the sidebar to the right.  Here you can find:<ul>
 <li> a list of the <b>Categories</b> used by this blog to tag and organize its posts</li>
