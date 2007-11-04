@@ -52,7 +52,7 @@
 <label for="author"> <span class="oc-discreetText">Name <?php if ($req) _e('(required)'); ?></span></label></p>
 
 <p><input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" tabindex="2" />
-<label for="email"> <span class="oc-discreetText">Mail (will not be published) <?php if ($req) _e('(required)'); ?></span></label></p>
+<label for="email"> <span class="oc-discreetText">Email (will not be published) <?php if ($req) _e('(required)'); ?></span></label></p>
 
 <p><input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" />
 <label for="url"> <span class="oc-discreetText">Website</span></label></p>
@@ -63,7 +63,7 @@
 /****** Math Comment Spam Protection Plugin ******/
 if ( function_exists('math_comment_spam_protection') && (!is_user_logged_in())) { 
 	$mcsp_info = math_comment_spam_protection();
-?> 	<p><input type="text" name="mcspvalue" id="mcspvalue" value="" size="22" tabindex="4" />
+?> 	<p><input type="text" name="mcspvalue" id="mcspvalue" value="" size="22" tabindex="4" /> 
 	<label for="mcspvalue" style="font-size: 1.3em; font-weight: bold;"><small>Spam protection: Sum of <?php echo $mcsp_info['operand1'] . ' + ' . $mcsp_info['operand2'] . ' ?' ?></small></label>
 	<input type="hidden" name="mcspinfo" value="<?php echo $mcsp_info['result']; ?>" />
 </p>
