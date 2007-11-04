@@ -83,6 +83,10 @@ Author: Nick Grossman & Rolando Pe–ate
 .oc-blog-comments .oc-feed-list li {
   padding: 0 1em;
 }
+#commentlist li.oc-feed-item {
+  padding: 1em;
+  border-bottom: 1px solid #ccc;
+}
 
 /* SHOULD BE REPEATED IN OPENCORE.CSS */
 .oc-dataTable-heading, .oc-section-heading {
