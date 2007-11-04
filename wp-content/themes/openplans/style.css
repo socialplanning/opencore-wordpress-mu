@@ -87,6 +87,10 @@ Author: Nick Grossman & Rolando Pe–ate
   padding: 1em;
   border-bottom: 1px solid #ccc;
 }
+#commentlist.oc-feed-list li a {
+  /* the default feed-list sizing is too small here */
+  font-size: 1em;
+}
 
 /* SHOULD BE REPEATED IN OPENCORE.CSS */
 .oc-dataTable-heading, .oc-section-heading {
