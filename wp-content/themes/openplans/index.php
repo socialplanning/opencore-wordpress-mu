@@ -7,8 +7,8 @@ get_header();
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 <div class="oc-blog-post oc-clearAfter" id="post-<?php the_ID(); ?>">
-   <div class="oc-blog-headingBlock oc-blog-postTitle" style="position:relative;">
-     <div style="position:absolute;bottom:.5em;right:.5em;"><?php edit_post_link(__('Edit')); ?></div>
+   <div class="oc-blog-headingBlock oc-blog-postTitle" style="position:relative; padding-right: 30px;">
+     <div style="position:absolute;top 15px; right: 10px;"><?php edit_post_link(__('Edit')); ?></div>
      <h3 class="oc-blog-storytitle oc-biggestText"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
      <span class="oc-headingContext oc-discreetText">by <?php the_author_link() ?><!-- at <?php the_time() ?>--></span>
   </div>
