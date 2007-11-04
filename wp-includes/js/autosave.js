@@ -95,13 +95,20 @@ function autosave_enable_buttons() {
 }
 
 function autosave() {
+
 	var form = $('post');
 	var rich = ((typeof tinyMCE != "undefined") && tinyMCE.getInstanceById('content')) ? true : false;
 
 	autosaveAjax = new sack();
 
 	/* Gotta do this up here so we can check the length when tinyMCE is in use */
-	if ( typeof tinyMCE == "undefined" || tinyMCE.configs.length < 1 || rich == false ) {
+
+	//TOPP edit
+	if (xinha_editors && xinha_editors[0]) {
+		form.content.value = xinha_editors[0].config.editor.content.getHTML();
+	}
+	//end TOPP edit
+	else if ( typeof tinyMCE == "undefined" || tinyMCE.configs.length < 1 || rich == false ) {
 		autosaveAjax.setVar("content", form.content.value);
 	} else {
 		// Don't run while the TinyMCE spellcheck is on.

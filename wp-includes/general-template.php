@@ -829,8 +829,8 @@ function the_editor($content, $id = 'content', $prev_id = 'title') {
         // TOPP change
   if (!$content || !(trim($content))) {
     $content = "&nbsp;";
-  }
-  	printf('<textarea editor-type="wysiwyg" id="content" name="content" rows="10" cols="60" base="advanced" height="400" width="800">%s</textarea>',$content);
+}
+ 	printf('<textarea editor-type="wysiwyg" id="content" name="content" rows="10" cols="60" base="advanced" height="400px" width="800px">%s</textarea>',$content);
   	return;
         // end TOPP change
 	$rows = get_option('default_post_edit_rows');
