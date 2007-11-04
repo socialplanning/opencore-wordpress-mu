@@ -89,8 +89,8 @@ Author URI: http://www.openplans.org/people/nickyg
     <?php
   }
 
-add_action('admin_head', 'oc_xinha_head');
-add_action('wp_head', 'oc_xinha_head');
+//add_action('admin_head', 'oc_xinha_head');
+//add_action('wp_head', 'oc_xinha_head');
 function oc_xinha_head() {
   ?>
   <!-- TOPP addition -->
