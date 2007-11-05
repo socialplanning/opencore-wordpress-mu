@@ -67,17 +67,17 @@ if (empty($post->post_status)) $post->post_status = 'draft';
         height: 300px;
     }
     </style>
-    
+
     <script type="text/javascript">
     var _editor_url = "/++resource++xinha/";
     var _editor_lang = "en";
     var xinha_editor = "content";
     </script>
-    <!-- END TOPP addition-->
     
     <!-- Load up the actual editor core -->
     <script type="text/javascript" src="/++resource++xinha/XinhaCore.js"></script>
     <script type="text/javascript" src="/++resource++xinha/xinhaconfig.js"></script>
+    <!-- END TOPP addition-->
 
 
 <input type="hidden" name="user_ID" value="<?php echo (int) $user_ID ?>" />

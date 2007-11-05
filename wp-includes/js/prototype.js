@@ -912,8 +912,10 @@ Ajax.Request.prototype = Object.extend(new Ajax.Base(), {
         $H(extras).each(function(pair) { headers[pair.key] = pair.value });
     }
 
-    for (var name in headers)
-      this.transport.setRequestHeader(name, headers[name]);
+    for (var name in headers) {
+      	if ('function' != typeof headers[name])
+		this.transport.setRequestHeader(name, headers[name]);
+    }
   },
 
   success: function() {

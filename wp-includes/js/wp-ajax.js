@@ -19,7 +19,7 @@ Object.extend(WPAjax.prototype, {
 				if ( tempObj.parseAjaxResponse() ) {
 					if ( 'function' == typeof tempObj.WPComplete )
 						tempObj.WPComplete(transport);
-				} else if ( 'function' == typeof tempObj.WPError ) // if response corresponds to an error (bad data, say, not 404)
+				} else if ( 'function' == typeof tempObj.WPError ) // if response corresponds to an error (bad data, say, not 404)	
 					tempObj.WPError(transport);
 			}
 		});

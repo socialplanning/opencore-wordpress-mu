@@ -54,7 +54,7 @@ Object.extend(listMan.prototype, {
 			return true;
 		var action = ( update ? 'update-' : 'add-' ) + what;
 		ajaxAdd.options.parameters = $H(ajaxAdd.options.parameters).merge({action: action}).merge(this.inputData.toQueryParams()).merge(this.grabInputs( where, ajaxAdd ).toQueryParams());
-
+		
 		var tempObj=this;
 		ajaxAdd.addOnComplete( function(transport) {
 			var newItems = $A(transport.responseXML.getElementsByTagName(what));
