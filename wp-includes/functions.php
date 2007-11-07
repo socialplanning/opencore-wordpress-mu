@@ -208,6 +208,11 @@ function get_option($setting) {
 	global $wpdb, $switched, $current_blog;
 	// TOPP: Override the home option, which is dynamically calculated in wpmu-settings.php
 	if ($setting == 'home' || $setting == "siteurl") {
+		if (substr( $current_blog->domain, -3 ) == ':80')
+		  {
+			$current_blog->domain = substr($current_blog->domain, 0, strlen($current_blog->domain)-3);
+		  }
+		//die("http://".$current_blog->domain.$current_blog->path);
 		return "http://".$current_blog->domain.$current_blog->path;
 	}
 	
