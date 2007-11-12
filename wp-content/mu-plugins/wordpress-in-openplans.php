@@ -122,19 +122,65 @@ function oc_xinha_head() {
   <?php 
 }
 
-
+//require_once("Snoopy.class.php");
 add_action('template_redirect', 'check_blog_status');
 function check_blog_status()
 {
   global $wpdb;
+  global $current_user;
+  $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+  $url = 'http://'.preg_replace('/blog.*/','info.xml',$url);
+
+  $file = _fetch_remote_file($url, "admin", "admin");
+  if (!strchr($file->response_code, "200"))
+    {
+      die("Blog communication failure with opencore.");
+    }
+  
+  $project_policy = $file->results;
+
+  if (! ($xmlparser = xml_parser_create()) )
+    { 
+      die ("Cannot create parser");
+    }
+  
+  $isMember = is_user_member_of_blog($current_user->id, $wpdb->blogid);
+  if (!$isMember)
+    {
+      xml_parse_into_struct($xmlparser, $project_policy, $vals, $index);
+
+      if ($vals[1]["value"] == "closed_policy")
+	{
+	  include(TEMPLATEPATH . '/index-unauthorized.php');
+	  exit;
+	}
+    }
 
   if (get_blog_option($wpdb->blogid,"activated") == "false")
     {
       include(TEMPLATEPATH . '/index-deactivated.php');
       exit;
     }
+
+
 }
 
-
+function _fetch_remote_file ($url, $username, $password,  $headers = "" )
+	{
+	  // Snoopy is an HTTP client in PHP
+	  $client = new Snoopy();
+	  $client->user = $username;
+	  $client->pass = $password;
+	  $client->agent = MAGPIE_USER_AGENT;
+	  $client->read_timeout = MAGPIE_FETCH_TIME_OUT;
+	  $client->use_gzip = MAGPIE_USE_GZIP;
+	  if (is_array($headers) )
+	    {
+	      $client->rawheaders = $headers;
+	    }
+	  
+	  @$client->fetch($url);
+	  return $client;
+	}
 
 ?>
