@@ -131,7 +131,11 @@ function check_blog_status()
   $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
   $url = 'http://'.preg_replace('/blog.*/','info.xml',$url);
 
-  $file = _fetch_remote_file($url, "admin", "admin");
+  $adminInfo = trim(file_get_contents(TOPP_ADMIN_INFO_FILENAME));
+  list($usr, $pass) = split(":", $adminInfo);
+
+  $file = _fetch_remote_file($url, $usr, $pass);
+
   if (!strchr($file->response_code, "200"))
     {
       die("Blog communication failure with opencore.");
@@ -147,9 +151,17 @@ function check_blog_status()
   $isMember = is_user_member_of_blog($current_user->id, $wpdb->blogid);
   if (!$isMember)
     {
-      xml_parse_into_struct($xmlparser, $project_policy, $vals, $index);
+      xml_parse_into_struct($xmlparser, $project_policy, $vals, $index);      
 
-      if ($vals[1]["value"] == "closed_policy")
+      foreach ($vals as $val)
+	{
+	  if ($val["tag"] == "POLICY")
+	    {
+	      $policy = $val["value"];
+	    }
+	}
+
+      if ( !(($policy == "medium_policy") || ($policy == "open_policy")) )
 	{
 	  include(TEMPLATEPATH . '/index-unauthorized.php');
 	  exit;
