@@ -11,6 +11,7 @@ define('DB_COLLATE', '');
 define('VHOST', 'yes'); 
 define('TOPP_SECRET_FILENAME', '<<universal/topp_secret_filename>>');
 define('TOPP_ADMIN_INFO_FILENAME', '<<universal/topp_admin_info_filename>>');
+define('TOPP_ZOPE_URI', '<<universal/topp_zope_uri>>');
 /* TOPP-FIXME: ideally this would be dynamic, though it kind of is later */
 $base = '/blog';
 /* end TOPP settings */
