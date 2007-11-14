@@ -128,13 +128,11 @@ function check_blog_status()
 {
   global $wpdb;
   global $current_user;
-  $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-  $url = 'http://'.preg_replace('/blog.*/','info.xml',$url);
-
+  $url = TOPP_ZOPE_URI.$_SERVER['REQUEST_URI'];
+  $url = preg_replace('/blog.*/','info.xml',$url);
   $adminInfo = trim(file_get_contents(TOPP_ADMIN_INFO_FILENAME));
   list($usr, $pass) = split(":", $adminInfo);
-
-  $file = _fetch_remote_file($url, $usr, $pass);
+  $file = _fetch_remote_file1($url, $usr, $pass);
 
   if (!strchr($file->response_code, "200"))
     {
@@ -177,9 +175,10 @@ function check_blog_status()
 
 }
 
-function _fetch_remote_file ($url, $username, $password,  $headers = "" )
+function _fetch_remote_file1 ($url, $username, $password,  $headers = "" )
 	{
 	  // Snoopy is an HTTP client in PHP
+	  require_once("Snoopy.class.php");
 	  $client = new Snoopy();
 	  $client->user = $username;
 	  $client->pass = $password;
