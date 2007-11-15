@@ -1333,9 +1333,21 @@ a.page-numbers:hover {
 	margin: 0 6px;
 }
 
+/*TOPP REMOVAL*/
+/*
 a.view-link {
 	position: absolute;
 	right: 5%;
 	margin-right: 220px;
 	text-decoration:underline;
 }
+*/
+/*END TOPP REMOVAL*/
+
+/*TOPP ADDITION*/
+a.view-link {
+	position: relative;
+	left: 534px;
+	text-decoration:underline;
+}
+/*END TOPP ADDITION*/
