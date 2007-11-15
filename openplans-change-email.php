@@ -53,5 +53,13 @@ if ($checkUser && !$checkEmail)
 {
   status_header(200);
   echo "Changing email for user : $username";
+  $oldEmail = $wpdb->get_row("SELECT user_email FROM $wpdb->users WHERE user_login = '$username' ");
   $wpdb->query("UPDATE $wpdb->users SET user_email='$email' WHERE ID= $checkUser->ID;");
+  $blogs = get_blogs_of_user ( $checkUser->ID );
+  foreach ($blogs as $blog)
+    {
+      $query = "UPDATE wp_".$blog->userblog_id."_options SET option_value='$email' WHERE option_name='admin_email' AND option_value='$oldEmail->user_email' ;";
+      $wpdb->query($query);
+    }
+
 }
