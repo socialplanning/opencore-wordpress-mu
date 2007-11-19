@@ -62,10 +62,10 @@ if (!$checkDomain)
 
 if ($checkUser && $checkDomain)
 {
-  echo "Remove user $username from blog $domain";
+  //echo "Remove user $username from blog $domain";
   //echo "user ID $checkUser->ID";
   //echo "domain ID $checkDomain->blog_id";
-  remove_user_from_blog($checkUser->ID, $checkDomain->blog_id);
+  //remove_user_from_blog($checkUser->ID, $checkDomain->blog_id);
 }
 
 $wp_role = '';
@@ -79,6 +79,13 @@ if ($role === "ProjectAdmin")
   $wp_role = 'administrator';
 }
 
-echo "Adding user $username from blog $domain";
+//echo "Adding user $username from blog $domain";
 status_header(200);
-add_user_to_blog($checkDomain->blog_id,$checkUser->ID, $wp_role);
+$tablename = "wp_usermeta";
+$meta_key = "wp_".$checkDomain->blog_id."_capabilities";
+$role_array = array($wp_role=>true);
+$meta_value = serialize($role_array);
+$user_id = $checkUser->ID;
+echo "UPDATE $tablename SET meta_value = '$meta_value' WHERE user_id = '$user_id' AND meta_key = '$meta_key'";
+$wpdb->query("UPDATE $tablename SET meta_value = '$meta_value' WHERE user_id = '$user_id' AND meta_key = '$meta_key'");
+
