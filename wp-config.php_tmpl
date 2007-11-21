@@ -1,7 +1,7 @@
 <?php
 {{#This is for the fassembler build}}
 require_once('{{env.base_path}}/etc/wordpress/settings.php');
-$fassembler_settings = parse_ini_file('{{env.base_path}}/etc/build.ini'), true);
+$fassembler_settings = parse_ini_file('{{env.base_path}}/etc/build.ini', true);
 $fassembler_general_settings = $fassembler_settings['general'];
 define('TOPP_SECRET_FILENAME', $fassembler_general_settings['topp_secret_filename']);
 define('TOPP_ADMIN_INFO_FILENAME', $fassembler_general_settings['admin_info_filename']);
