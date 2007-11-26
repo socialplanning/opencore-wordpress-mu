@@ -151,7 +151,7 @@ foreach ($team as $user)
   
   if ($op_role === "ProjectMember")
     {
-      $wp_role = 'contributor';
+      $wp_role = 'author';
     }
   if ($op_role === "ProjectAdmin")
     {

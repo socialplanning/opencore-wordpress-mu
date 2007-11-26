@@ -72,7 +72,7 @@ $wp_role = '';
 
 if ($role === "ProjectMember")
 {
-  $wp_role = 'contributor';
+  $wp_role = 'author';
 }
 if ($role === "ProjectAdmin")
 {
