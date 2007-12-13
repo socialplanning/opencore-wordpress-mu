@@ -136,7 +136,7 @@ function check_blog_status()
 
   if (!strchr($file->response_code, "200"))
     {
-      die("Blog communication failure with opencore.");
+      die("Blog communication failure with opencore; url='$url'");
     }
   
   $project_policy = $file->results;

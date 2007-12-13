@@ -6,32 +6,6 @@ if( $current_site && $current_blog )
 
 $wpmuBaseTablePrefix = $table_prefix;
 
-/* TOPP section:
-   This takes the environmental variable PROXY_BASE, which should be like
-     http://original-host/SCRIPT_NAME
-   and applies it to the current request information.  That is, it overwrites
-   HTTP_HOST with original-host, and fixes up REQUEST_URI to use SCRIPT_NAME.
-   The remaining PATH_INFO is determined by looking for VirtualPathRoot in
-   the URL.  This typically goes with httpd.conf like:
-
-    RewriteEngine On
-    # %1 = scheme
-    # %2 = host
-    # %3 = SCRIPT_NAME
-    # %4 = PATH_INFO
-    RewriteCond %{REQUEST_URI} ^/VirtualHostBase/([^/]+)/([^/]+)/VirtualHostRoot/(.*)/VirtualPathRoot/(.*)
-    RewriteRule .* /%4 [PT,E=PROXY_BASE:%1://%2/%3]
-
-   The server may be proxied to like:
-
-    RewriteRule ^/blog(.*) http://localhost:8090/VirtualHostBase/http/%{HTTP_HOST}/VirtualHostRoot/blog/VirtualPathRoot$1 [P]
-
-   This saves all the request path and host information, except for
-   the scheme, for which there is no clear standard for expressing it
-   in the CGI environment.  (FIXME: further inspection might find a way)
-*/
-
-
 if ($_SERVER['HTTP_X_FORWARDED_SERVER']) {
   $_SERVER['HTTP_HOST'] = $_SERVER['HTTP_X_FORWARDED_SERVER'];
   $forwarded_ips = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
