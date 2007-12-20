@@ -9,19 +9,19 @@ $config_filename = dirname(__FILE__) . '/wp-config.php';
 $db_filename = dirname(__FILE__) . '/../wp-setup-database.txt';
 
 if (!file_exists($config_filename) || file_exists($db_filename) {
-	if (strpos($_SERVER['PHP_SELF'], 'wp-admin') !== false) {
+    if (strpos($_SERVER['PHP_SELF'], 'wp-admin') !== false) {
         $path = '';
     } else {
         $path = 'wp-admin/';
     }
-	if (file_exists($db_filename)) {
-		$_POST['action'] = 'step3';
-	}
-	include( "index-install.php" ); // install WPMU!
-	if (file_exists($db_filename)) {
-		unlink($db_filename);
-	}
-	die();
+    if (file_exists($db_filename)) {
+        $_POST['action'] = 'step3';
+    }
+    include( "index-install.php" ); // install WPMU!
+    if (file_exists($db_filename)) {
+        unlink($db_filename);
+    }
+    die();
 }
 /* End TOPP change */
 
