@@ -60,7 +60,8 @@ class wpdb {
 		if ( defined('DB_COLLATE') )
 			$this->collate = DB_COLLATE;
 
-		$this->dbh = @mysql_connect($dbhost, $dbuser, $dbpassword);
+		$this->dbh = @mysql_connect($dbhost, $dbuser, $dbpassword) or die('Could not connect: ' . mysql_error());
+
 		if (!$this->dbh) {
 			$this->bail("
 <h1>Error establishing a database connection</h1>
