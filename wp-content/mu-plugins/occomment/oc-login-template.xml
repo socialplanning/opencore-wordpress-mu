@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jugl="http://namespace.jugl.org/">
+<p class="oc-login">
+ Currently logged in using OpenPlans ID
+ <a jugl:attributes="href profileurl"
+    jugl:content="id">member id</a>
+ | <a id="oc-link-logout" href="http://www.openplans.org/logout">Log out</a>
+ | <a id="oc-link-anonymous" href="">Post anonymously</a>
+
+</p>
+<p class="oc-login">
+  <input id="oc-log-comment" type="checkbox" checked="checked" />
+  Log to my profile
+</p>
+</div>

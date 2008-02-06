@@ -1,0 +1,14 @@
+/*
+Theme Name: StreetsBlog
+Theme URI: http://streetsblog.org
+Description: Based on NYCSR.org
+Version: 1.0
+Author: Nick Grossman (wrkng.net), 
+        adapted from nyscr.org by Andrew Fischler Jr.
+*/
+
+/*Global Layout
+----------------------------*/
+#oc-progress-spinner { position: relative; top: 10px; right: 0; }
+
+.oc-hidden { visibility: hidden };
