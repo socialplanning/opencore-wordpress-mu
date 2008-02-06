@@ -32,7 +32,7 @@ get_header();
 <?php endwhile;  ?>
 <?php elseif (is_home()) : /* home and no posts -- show blank slate */ ?>
   <h2>Welcome to your blog!</h2>
-  <p>You haven't written any posts yet. <a href="wp-admin/post-new.php">Write a post &raquo;</p>
+  <p>You haven't written any posts yet. <a href="wp-admin/post-new.php">Write a post &raquo;</a></p>
   
 <?php else : ?>
   <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
