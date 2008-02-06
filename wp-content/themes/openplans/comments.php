@@ -46,6 +46,15 @@
 
 <?php if ( $user_ID ) : ?>
 
+<div id="author_info">
+<input type="hidden" name="author" value="<?php echo($user_identity); ?>" />
+<input type="hidden" name="user_id" id="user_id" value="<?php echo($user_login); ?>" />
+<input type="hidden" name="user_email" value="<?php echo($user_email); ?>" />
+<input type="hidden" name="user_url" value="<?php echo($user_url); ?>" />
+</div>
+<div id="openplans_info">
+</div>
+
 <?php else : ?>
 
 <p><input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="1" />
@@ -75,6 +84,7 @@ if ( function_exists('math_comment_spam_protection') && (!is_user_logged_in())) 
 <p><textarea name="comment" id="comment" cols="80" rows="10" tabindex="4" style="width: 500px;"></textarea></p>
 
 <p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit comment" />
+<?php do_action("OC_ProgressSpinner") ?>
 <input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
 </p>
 <?php do_action('comment_form', $post->ID); ?>
