@@ -29,7 +29,12 @@ get_header();
 
 <?php comments_template(); // Get wp-comments.php template ?>
 
-<?php endwhile; else: ?>
+<?php endwhile;  ?>
+<?php elseif (is_home()) : /* home and no posts -- show blank slate */ ?>
+  <h2>Welcome to your blog!</h2>
+  <p>You haven't written any posts yet. <a href="wp-admin/post-new.php">Write a post &raquo;</p>
+  
+<?php else : ?>
   <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 <?php endif; ?>
 
