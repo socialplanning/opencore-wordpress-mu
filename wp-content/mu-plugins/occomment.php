@@ -88,12 +88,12 @@ var OpenCore = {
     },
     wpcomment_onsuccess: function(transport, options) {
         // Get the URL to the new comment and include that in our form.
-        var commentids = transport.responseText.match(/<li id="comment-(\d+)"/g);
+        var commentids = transport.responseText.match(/<li[^>]*id="comment-(\d+)"/g);
         if (! commentids) {
             OpenCore.wpcomment_onfailure(transport);
             return;
         }
-        var commentid = commentids.slice(-1)[0].match(/<li id="comment-(\d+)"/)[1];
+        var commentid = commentids.slice(-1)[0].match(/<li[^>]*id="comment-(\d+)"/)[1];
         OpenCore.commenturl = location.href.split('#')[0] + '#comment-' + commentid;
         var commentform = Ext.get('commentform');
         var commentElem = document.createElement('input');
