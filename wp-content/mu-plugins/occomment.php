@@ -132,10 +132,14 @@ var OpenCore = {
         location.reload();
     },
     hide: function(name) {
-        Ext.get(name).addClass('oc-hidden');
+        var hide = Ext.get(name);
+        if (hide) hide.addClass('oc-hidden');
+
     },
     unhide: function(name) {
-        Ext.get(name).removeClass('oc-hidden');
+        var unhide = Ext.get(name);
+        if (unhide) unhide.removeClass('oc-hidden');
+
     },
 }
 
