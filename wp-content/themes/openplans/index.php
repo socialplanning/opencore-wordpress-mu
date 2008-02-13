@@ -31,9 +31,12 @@ get_header();
 
 <?php endwhile;  ?>
 <?php elseif (is_home()) : /* home and no posts -- show blank slate */ ?>
+  <?php if (current_user_can('edit_posts')) : ?>
   <h2>Welcome to your blog!</h2>
   <p>You haven't written any posts yet. <a href="wp-admin/post-new.php">Write a post &raquo;</a></p>
-  
+  <?php else :?>
+  <p>There aren't any blog posts yet.  Come back soon!</p>
+  <?php endif; ?>
 <?php else : ?>
   <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>
 <?php endif; ?>
