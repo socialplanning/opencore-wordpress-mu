@@ -32,28 +32,22 @@ if ($sig != $expect)
 
 $email = $_POST['email'];
 $home_page = $_POST['home_page'];
-$checkUser = $wpdb->get_row("SELECT user_login FROM $wpdb->users WHERE user_login = '$username'");
-$checkEmail = $wpdb->get_row("SELECT user_email FROM $wpdb->users WHERE user_email = '$email'");
+$checkUser = $wpdb->get_row("SELECT ID FROM $wpdb->users WHERE user_login = '$username'");
+$checkEmail = $wpdb->get_row("SELECT ID FROM $wpdb->users WHERE user_email = '$email'");
 
 if ($checkUser)
 {
-  status_header(400);
-  echo "User with name $username already exists! :";
-  exit(0);
+  $wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE user_id = '$checkUser->ID'" );
+  $wpdb->query( "DELETE FROM {$wpdb->users} WHERE ID = '$checkUser->ID'" );
 }
 
 if ($checkEmail)
 {
-  status_header(400);
-  echo "User with email $email already exists! :";
-  exit(0);
+  $wpdb->query( "DELETE FROM {$wpdb->usermeta} WHERE user_id = '$checkEmail->ID'" );
+  $wpdb->query( "DELETE FROM {$wpdb->users} WHERE ID = '$checkEmail->ID'" );
 }
 
-if (!$checkUser && !$checkEmail)
-{
-  status_header(200);
-  echo "Creating user: $username";
-  wpmu_create_user($username, '', $email);
-  //  echo "UPDATE wpdb->users SET user_url='bling' WHERE user_login = '$username' ";
-  $wpdb->query("UPDATE $wpdb->users SET user_url='$home_page' WHERE user_login = '$username' "); 
-}
+status_header(200);
+echo "Creating user: $username";
+wpmu_create_user($username, '', $email);
+$wpdb->query("UPDATE $wpdb->users SET user_url='$home_page' WHERE user_login = '$username' "); 
