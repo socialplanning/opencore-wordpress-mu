@@ -9,7 +9,7 @@ Author URI: douglas.mayle.org
 
 
 */
-
+$Opencore_remote_url = substr(get_option('siteurl'),0,strlen(get_option('siteurl')) - 4);
 add_action("OC_ProgressSpinner", "oc_progress_spinner");
 function oc_progress_spinner()
 {
@@ -29,9 +29,9 @@ function oc_comment_link()
 add_action("wp_head", "oc_js");
 function oc_js()
 {
+    global $Opencore_remote_url;
 ?>
 <link rel="stylesheet" type="text/css" media="screen" href="<?php bloginfo('siteurl'); ?>/wp-content/mu-plugins/occomment/oc-styles.css" />
-<script src="<?php bloginfo('siteurl'); ?>/wp-content/mu-plugins/occomment/Jugl.js" type="text/javascript"></script>
 <script type="text/javascript">
 var OpenCore = {
     /* Comment Page Initialization.  (i.e. Logged in User query and response handling,
@@ -43,22 +43,17 @@ var OpenCore = {
             // The user is not a logged in user, so there is no need to continue.
             return;
         }
-        // Set up namespace for Jugl.
-        var uri = "http://jugl.tschaub.net/trunk/lib/Jugl.js";
-        OpenCore.Jugl = window[uri];
-        var template = new this.Jugl.Async.loadTemplate(
-                        '<?php bloginfo('siteurl'); ?>' + '/wp-content/mu-plugins/occomment/oc-login-template.xml',
-                        function (template) {
-                            var env = OpenCore.memberInfo;
-                            env.wp_url = OpenCore.wp_url;
-                            var data = template.process(OpenCore.memberInfo);
-                            var output = Ext.get('openplans_info');
-                            output.appendChild(data);
-                        });
+        var commentbox = new Ext.Template('<p class="oc-login">',
+'  <input id="oc-log-comment" type="checkbox" checked="checked" />',
+'  Log to my profile',
+'</p>');
+        commentbox.append('openplans_info', {id: OpenCore.memberInfo.id,
+                         profileurl: OpenCore.memberInfo.profileurl,
+                         logouturl:OpenCore.oc_url + 'logout'});
         Ext.get("commentform").addListener("submit", OpenCore.relaysubmit);
     },
     wp_url: '<?php echo get_option('siteurl'); ?>',
-    oc_url: 'http://cezan.openplans.org:2000/',
+    oc_url: '<?php echo "$Opencore_remote_url"; ?>',
     wp_blogname: '<?php bloginfo('name'); ?>',
     memberInfo: {loggedin: false},
     /* Simple shortcut for adding a script tag to the page. */

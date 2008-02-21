@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<div xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:jugl="http://namespace.jugl.org/">
-<p class="oc-login">
-  <input id="oc-log-comment" type="checkbox" checked="checked" />
-  Log to my profile
-</p>
-</div>
