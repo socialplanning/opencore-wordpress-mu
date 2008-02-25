@@ -41,7 +41,7 @@ $submenu['edit-comments.php'][25] = array(sprintf(__("Awaiting Moderation (%s)")
 
 $submenu['edit.php'][5] = array(__('Posts'), 'edit_posts', 'edit.php');
 $submenu['edit.php'][10] = array(__('Pages'), 'edit_pages', 'edit-pages.php');
-$submenu['edit.php'][12] = array(__('Uploads'), 'upload_files', 'upload.php');
+//$submenu['edit.php'][12] = array(__('Uploads'), 'upload_files', 'upload.php');
 $submenu['edit.php'][15] = array(__('Categories'), 'manage_categories', 'categories.php');
 //$submenu['edit.php'][30] = array(__('Files'), 'edit_files', 'templates.php');
 $submenu['edit.php'][35] = array(__('Import'), 'import', 'import.php');

@@ -272,7 +272,7 @@ function wp_upload_tab_upload_action() {
 	endswitch;
 }
 
-add_action( 'upload_files_upload', 'wp_upload_tab_upload_action' );
+//add_action( 'upload_files_upload', 'wp_upload_tab_upload_action' );
 
 function wp_upload_grab_attachments( $obj ) {
 	$obj->is_attachment = true;
@@ -339,8 +339,8 @@ function wp_upload_tab_browse_action() {
 		wp_enqueue_script('upload');
 }
 
-add_action( 'upload_files_browse', 'wp_upload_tab_browse_action' );
-add_action( 'upload_files_browse-all', 'wp_upload_tab_browse_action' );
+//add_action( 'upload_files_browse', 'wp_upload_tab_browse_action' );
+//add_action( 'upload_files_browse-all', 'wp_upload_tab_browse_action' );
 
 function wp_upload_admin_head() {
 	global $wp_locale;
