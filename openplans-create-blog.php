@@ -203,8 +203,8 @@ $wpdb->query("UPDATE $wpdb->comments SET comment_author_url='$urlForFirstComment
 // NEW!  Delete first post and comement
 $wpdb->query("DELETE FROM $wpdb->posts WHERE ID=1");
 $wpdb->query("DELETE FROM $wpdb->comments WHERE comment_ID=1");
-
-
+$wpdb->query("DELETE FROM $wpdb->post2cat WHERE post_ID=1");
+$wpdb->query("UPDATE $wpdb->categories SET category_count = 0 WHERE ID=1");
 
 //echo ("SELECT option_value FROM $wpdb->options WHERE option_name = 'siteurl' ");
 //global $current_blog;

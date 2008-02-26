@@ -63,37 +63,7 @@ legend {
 #wphead, #user_info, #minisub, iframe#uploading {
   display: none;
 }
-#adminmenu, #submenu {
-  background-color: #4D4945 !important;
-  border-top: none !important;
-  padding: 0.25em !important;
-}
-#adminmenu a, #submenu a {
-  font-size: 10px !important;
-  font-weight: bold !important;
-  padding: 0.25em 0.5em !important;
-}
-#adminmenu a {
-  color: #fff !important;
-}
-#adminmenu a:hover, #adminmenu a.current {
-  background-color: #EB852B !important;
-  border: none !important;
-  color: #fff !important;
-  padding: 0.25em 0.5em !important;
-  text-decoration: none !important;
-}
-#submenu, #minisub {
-  background-color: #fff !important;
-}
-#submenu a {
-  color: #333 !important;
-}
-#submenu a:hover, #submenu a.current {
-  background-color: #fff !important;
-  border: none !important;
-  color: #EB852B !important;
-}
+
 .wrap {
   margin: 0.5em 0 !important;
 }

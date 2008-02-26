@@ -198,9 +198,9 @@ p, li, dl, dd, dt {
 }
 
 textarea, input, select {
-	background: #f4f4f4;
+/*	background: #f4f4f4;
 	border: 1px solid #b2b2b2;
-	color: #000;
+	color: #000;*/
 	font: 13px Verdana, Arial, Helvetica, sans-serif;
 	margin: 1px;
 	padding: 3px;
@@ -334,7 +334,7 @@ form#upload #post_content {
 	font: 12px Georgia, "Times New Roman", Times, serif;
 }
 
-.submit input, .submit input:focus, .button, .button:focus {
+/*.submit input, .submit input:focus, .button, .button:focus {
 	background: url( images/fade-butt.png );
 	border: 3px double #999;
 	border-left-color: #ccc;
@@ -348,7 +348,7 @@ form#upload #post_content {
 	border: 3px double #ccc;
 	border-left-color: #999;
 	border-top-color: #999;
-}
+}*/
 
 .button, .button:focus {
 	padding: 0.15em;
@@ -458,84 +458,64 @@ input.disabled, textarea.disabled {
 }
 
 #adminmenu {
-	background: #83B4D8;
-	border-top: 3px solid #448abd;
-	margin: 0;
-	padding: .2em .2em .3em 2em;
+background:#4D4945;
+}
+
+#adminmenu, #submenu {
+padding: 0.25em;
+margin: 0;
 }
 
 #adminmenu .current, #submenu .current {
-	font-weight: bold;
-	text-decoration: none;
-}
-
-#adminmenu a {
-	color: #000;
-	font-size: 14px;
-	font-weight: normal;
-	margin: 0;
-	padding: 3px 5px;
-	border-bottom: none;
-}
-
-#adminmenu a:hover, #adminmenu a.current {
-	background: #ddeaf4;
-	color: #333;
+font-weight: bold;
+text-decoration: none;
 }
 
 #adminmenu li, #submenu li {
-	display: inline;
-	line-height: 200%;
-	list-style: none;
-	text-align: center;
-	white-space: nowrap;
+display: inline;
+line-height: 200%;
+list-style: none;
+text-align: center;
+white-space: nowrap;
 }
 
-#adminmenu a.current {
-	background: #0d324f;
-	border-right: 2px solid #4f96c8;
-	border-top: 1px solid #96c0de;
-	color: #fff;
-	padding-bottom: 8px;
+#adminmenu a, #submenu a {
+font-size: 10px;
+font-weight: bold;
+padding: 0.25em 0.5em;
+}
+
+#adminmenu a {
+  color: #fff;
+}
+#adminmenu a:hover, #adminmenu a.current {
+background: #97ca00;
+color: #fff;
+padding: 0.25em 0.5em;
+text-decoration: none;
 }
 
 #submenu, #minisub {
-	background: #0d324f;
-	border-bottom: none;
-	margin: 0;
-	padding: 3px 2em 0 3em;
-}
-
-#minisub {
-	height: 6px;
-}
-
-#submenu .current {
-	background: #f9fcfe;
-	border-top: 1px solid #045290;
-	border-right: 2px solid #045290;
-	color: #000;
+background: #fff;
 }
 
 #submenu a {
-	border: none;
-	color: #fff;
-	font-size: 12px;
-	padding: .3em .4em .4em;
+color: #333;
 }
 
-#submenu a:hover {
-	background: #ddeaf4;
-	color: #393939;
+#submenu a:hover, #submenu a.current {
+color: #97ca00;
 }
 
-#submenu li {
-	line-height: 180%;
-	height: 25px;
+#minisub {
+background: #0d324f;
+border-bottom: none;
+margin: 0;
+padding: 3px 2em 0 3em;
 }
 
-#categorydiv input, #poststatusdiv input, #commentstatusdiv input, #pingstatusdiv input {
-	border: none;
+#minisub {
+height: 6px;
 }
 
 #postdiv, #titlediv, #guiddiv {
