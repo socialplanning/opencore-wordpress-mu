@@ -17,6 +17,7 @@ require_once('openplans-auth.php');
 
 //require_once('wpmu-settings.php');
 require_once('wp-config.php');
+require_once('wp-includes/post.php');
 require_once(ABSPATH . WPINC . '/wpmu-functions.php');
 require_once('Snoopy.class.php');
 
@@ -80,18 +81,8 @@ class member_profile
 $domain_pieces = split("\.", $domain);
 $project_name = $domain_pieces[0];
 
-// XXX must point to an opencore instance running off https://svn.openplans.org/svn/opencore/branches/wordpress-sandbox
-// FIXME make configurable
-//$url_team = "http://localhost:4570/openplans/projects/".$project_name."/members.xml";
-//echo $url_team;
-//echo "The project that was selected from openplans is $project_name: ";
-
 $team = array();
-//$resp = _fetch_remote_file( $url_team, "admin", "admin" );
-//$team = _parse_team_file($resp->results);
 $team = _parse_team_file($membersXML);
-
-//die($team);
 
 //check to see if all the users are in the wp table and find the first
 //administrator
@@ -190,26 +181,8 @@ Check out the sidebar to the right.  Here you can find:<ul>
 <p align="right">Click the <b>Comments</b> link below to see comments on this post.</p>
 ';
 
-//edit fist blog post to be an openplans style welcome
-/* $wpdb->query("UPDATE $wpdb->posts SET post_content='$contentForFirstPost' WHERE ID=1");
-$wpdb->query("UPDATE $wpdb->posts SET post_title='$titleForFirstPost' WHERE ID=1");
-
-
-
-$wpdb->query("UPDATE $wpdb->comments SET comment_content='$contentForFirstComment' WHERE comment_ID=1");
-$wpdb->query("UPDATE $wpdb->comments SET comment_author='$authorForFirstComment' WHERE comment_ID=1");
-$wpdb->query("UPDATE $wpdb->comments SET comment_author_url='$urlForFirstComment' WHERE comment_ID=1");
-*/
 // NEW!  Delete first post and comement
-$wpdb->query("DELETE FROM $wpdb->posts WHERE ID=1");
-$wpdb->query("DELETE FROM $wpdb->comments WHERE comment_ID=1");
-$wpdb->query("DELETE FROM $wpdb->post2cat WHERE post_ID=1");
-$wpdb->query("UPDATE $wpdb->categories SET category_count = 0 WHERE ID=1");
-
-//echo ("SELECT option_value FROM $wpdb->options WHERE option_name = 'siteurl' ");
-//global $current_blog;
-//echo ":".$current_blog->domain.":";
-//echo ":".$current_blog->path.":";
+wp_delete_post(1);
 
 	/* Lets add some default options if they don't exist
 			If an option with the specified name already exists, no changes are made to its value
