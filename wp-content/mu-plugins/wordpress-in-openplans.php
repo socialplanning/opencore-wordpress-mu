@@ -129,7 +129,7 @@ function check_blog_status()
   global $wpdb;
   global $current_user;
   $url = TOPP_ZOPE_URI.$_SERVER['REQUEST_URI'];
-  $url = preg_replace('/blog.*/','info.xml',$url);
+  $url = preg_replace('@(/projects/[^/]+/)blog.*@','\1info.xml',$url);
   $adminInfo = trim(file_get_contents(TOPP_ADMIN_INFO_FILENAME));
   list($usr, $pass) = split(":", $adminInfo);
   $file = _fetch_remote_file1($url, $usr, $pass);
