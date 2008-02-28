@@ -176,7 +176,7 @@ h2 {
 	margin: 5px 10px;
 }
 
-img, #footer a {
+img, #wp-footer a {
 	border: 0;
 }
 
@@ -198,9 +198,6 @@ p, li, dl, dd, dt {
 }
 
 textarea, input, select {
-/*	background: #f4f4f4;
-	border: 1px solid #b2b2b2;
-	color: #000;*/
 	font: 13px Verdana, Arial, Helvetica, sans-serif;
 	margin: 1px;
 	padding: 3px;
@@ -268,7 +265,6 @@ form#upload #post_content {
 }
 
 .available-theme a.screenshot:hover {
-/*	border: 1px solid #666;*/
 }
 
 .available-theme img {
@@ -333,22 +329,6 @@ form#upload #post_content {
 	color: #000;
 	font: 12px Georgia, "Times New Roman", Times, serif;
 }
-
-/*.submit input, .submit input:focus, .button, .button:focus {
-	background: url( images/fade-butt.png );
-	border: 3px double #999;
-	border-left-color: #ccc;
-	border-top-color: #ccc;
-	color: #333;
-	padding: 0.25em;
-}
-
-.submit input:active, .button:active {
-	background: #f4f4f4;
-	border: 3px double #ccc;
-	border-left-color: #999;
-	border-top-color: #999;
-}*/
 
 .button, .button:focus {
 	padding: 0.15em;
@@ -495,6 +475,10 @@ padding: 0.25em 0.5em;
 text-decoration: none;
 }
 
+#adminmenu a:hover {
+background: #eb852b;
+}
+
 #submenu, #minisub {
 background: #fff;
 }
@@ -503,8 +487,12 @@ background: #fff;
 color: #333;
 }
 
-#submenu a:hover, #submenu a.current {
+#submenu a.current {
 color: #97ca00;
+}
+
+#submenu a:hover {
+color: #eb852b;
 }
 
 #minisub {
@@ -632,23 +620,23 @@ input.delete:hover {
 	width: 100%;
 }
 
-#footer {
+#wp-footer {
 	clear: both;
 	text-align: center;
 	width: 500px;
-	margin: auto;
+	margin: 0 auto;
 	height: 100px;
 }
 
-#footer .docs {
+#wp-footer .docs {
 	padding-top: 19px;
 	line-height: 160%;
 }
 
-#footer .docs a {
+#wp-footer .docs a {
 	text-decoration: underline;
 }
-#footer .logo {
+#wp-footer .logo {
 	float: left;
 	margin: 0;
 	padding: 0;
