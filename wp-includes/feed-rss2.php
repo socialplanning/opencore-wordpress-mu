@@ -10,6 +10,7 @@ $more = 1;
 	xmlns:content="http://purl.org/rss/1.0/modules/content/"
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
 	<?php do_action('rss2_ns'); ?>
 >
 
@@ -17,6 +18,7 @@ $more = 1;
 	<title><?php bloginfo_rss('name'); wp_title_rss(); ?></title>
 	<link><?php bloginfo_rss('url') ?></link>
 	<description><?php bloginfo_rss("description") ?></description>
+	 <slash:comments><?php comments_number('0','1','%'); ?></slash:comments> 
 	<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_lastpostmodified('GMT'), false); ?></pubDate>
 	<generator>http://wordpress.org/?v=<?php bloginfo_rss('version'); ?></generator>
 	<language><?php echo get_option('rss_language'); ?></language>
