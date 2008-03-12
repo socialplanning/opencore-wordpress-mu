@@ -55,17 +55,15 @@ if ($blogs)
 {
 
   if (get_blog_option($blogs->blog_id, "activated") == "false")
-    {
-      status_header(200);
-      update_blog_option($blogs->blog_id, "activated", "true");
-      exit(0);
-    }
+  {
+    status_header(200);
+    update_blog_option($blogs->blog_id, "activated", "true");
+    exit(0);
+  }
   else
-    {
-      status_header(400);
-      echo "Blog with domain '$domain' already exists and is activated;";
-      exit(0);
-    }
+  {
+    delete_blog($blogs->blog_id);
+  }
 }
 
 
