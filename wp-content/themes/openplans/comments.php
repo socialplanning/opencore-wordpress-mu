@@ -102,6 +102,16 @@
 
 <p class="hide"><input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" />
 <label for="url"><small>Website</small></label></p>
+<?php 
+/****** Math Comment Spam Protection Plugin ******/
+if ( function_exists('math_comment_spam_protection') && (!is_user_logged_in())) { 
+	$mcsp_info = math_comment_spam_protection();
+?> 	<p><input type="text" name="mcspvalue" id="mcspvalue" value="" size="22" tabindex="4" /> 
+	<label for="mcspvalue" style="font-size: 1.3em; font-weight: bold;"><small>Spam protection: Sum of <?php echo $mcsp_info['operand1'] . ' + ' . $mcsp_info['operand2'] . ' ?' ?></small></label>
+	<input type="hidden" name="mcspinfo" value="<?php echo $mcsp_info['result']; ?>" />
+</p>
+<?php } // if function_exists... 
+?>
 
 </div>
 <div id="openplans_info">
