@@ -42,9 +42,13 @@ get_header();
 <?php elseif (is_home()) : /* home and no posts -- show blank slate */ ?>
   <?php if (current_user_can('edit_posts')) : ?>
   <h2>Welcome to your blog!</h2>
+
   <p>You haven't written any posts yet. <a href="wp-admin/post-new.php">Write a post &raquo;</a></p>
-  <?php else :?>
+  <?php elseif (is_user_logged_in()) : ?>
   <p>There aren't any blog posts yet.  Come back soon!</p>
+  <?php else :?>
+  <!-- not logged in.  Should have a greyed-out new post thingy   -->
+  <p>There aren't any blog posts yet.  If you're a member of this project, please <a href="wp-admin/post-new.php">log in and write some</a>.</p>
   <?php endif; ?>
 <?php else : ?>
   <p><?php _e('Sorry, no posts matched your criteria.'); ?></p>

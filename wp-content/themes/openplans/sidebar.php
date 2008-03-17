@@ -18,6 +18,12 @@
       <a href="<?php bloginfo('home'); ?>/wp-admin/">Administer your blog</a>
     </p>
   </div>
+  <?php elseif (is_user_logged_in()) : ?>
+  <div class="oc-getstarted">
+    Only members of this project can write posts.  <a href="../request-membership">Request membership to this project.</a>
+  </div>
+  <?php else : ?>
+  <!-- actually, what should this say? "Write a post"?  "Submit a post"?  "Administer this blog"? -->
   <?php endif; ?>
 
   <div id="search" class="oc-boxy">
