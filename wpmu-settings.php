@@ -85,6 +85,8 @@ function wpmu_current_site() {
 				$current_site = $sites[0];
 				die( "That blog does not exist. Please try <a href='http://{$current_site->domain}{$current_site->path}'>http://{$current_site->domain}{$current_site->path}</a>" );
 			} else {
+                                send_supervisor_warning("No WPMU Site",
+                                                        "No WPMU site defined on this host ('$sitedomain' from '$domain')." );
 				die( "No WPMU site defined on this host ('$sitedomain' from '$domain'). If you are the owner of this site, please check <a href='http://trac.mu.wordpress.org/wiki/DebuggingWpmu'>Debugging WPMU</a> for further assistance." );
 			}
 		} else {

@@ -1,6 +1,7 @@
 <?php
 if( defined( 'ABSPATH' ) == false )
 	die();
+include('openplans-exceptions.php');
 
 // Turn register globals off
 function wp_unregister_GLOBALS() {
