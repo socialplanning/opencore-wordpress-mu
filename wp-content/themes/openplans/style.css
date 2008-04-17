@@ -60,6 +60,9 @@ Author: Nick Grossman & Rolando Pe–ate
 .oc-blog-headingBlock h3 a:hover {
   text-decoration: underline;
 }
+.oc-blog-headingBlock .oc-headingContext {
+  padding: 0 0 0 1em;
+}
 .oc-blog-storycontent {
   padding: 0 1em;
 }
