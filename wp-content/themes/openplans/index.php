@@ -6,35 +6,26 @@ get_header();
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-<div class="post fullpost <?php if (in_category(47)) : ?>heds<?php endif; ?>" id="post-<?php the_ID(); ?>">
+<div class="oc-blog-post oc-clearAfter" id="post-<?php the_ID(); ?>">
+   <div class="oc-blog-headingBlock oc-blog-postTitle" style="position:relative; padding-right: 30px;">
+     <div style="position:absolute;top 15px; right: 10px;"><?php edit_post_link(__('Edit')); ?></div>
+     <h3 class="oc-blog-storytitle oc-biggestText"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
+     <span class="oc-headingContext oc-discreetText">by <?php the_author_link() ?><!-- at <?php the_time() ?>--></span>
+  </div>
 
-      <h2 class="title"><a href="<?php the_permalink() ?>" rel="bookmark" title="Permanent link to &ldquo;<?php the_title(); ?>&rdquo;"><?php the_title(); ?></a></h2>
-      </p>
-      <p class="credit">
-       by <?php the_author_posts_link(); ?> on  <abbr class="date" title="<?php the_time('c') ?>"><?php the_time('F j, Y') ?></abbr> <?php comments_popup_link(__('0'), __('1'), __('%'), __('commentcount')); ?>
-</p>  
-      <div class="entry">
-        <?php the_content("Continue reading &ldquo;" . the_title('', '', false) . "&rdquo;&nbsp;&raquo;"); ?>
-      </div>
-      
-      <?php if (get_post_custom_values('Actions')) : ?>
-        <div class="postactions">
-          <h3>Take Action:</h3>
-          <div class="postactions-content">
-          <?php echo get_post_meta($post->ID, 'Actions', true); ?>
-          </div>
-        </div><!-- end .postactions -->
-      <?php endif; ?>
-      <div class="postmetadata metaText clearAfter">
-        <div class="postcategories">
-          Categories: <?php the_category(', ', ''); ?>
-        </div>
-        <div class="postshare">
-          <?php comments_popup_link(__('No Comments &#187;'), __('1 Comment'), __('% Comments'), __('commentcount')); ?><?php the_last_commenter(' latest by ') ?>
-          <?php edit_post_link('Edit', '', ''); ?>
-        </div>
-      </div>
-    </div>
+  <div class="oc-blog-storycontent">
+    <?php the_content(__('(more...)')); ?>
+  </div>
+  <div class="oc-blog-meta">
+  <div class="oc-blog-categories oc-discreetText">
+    <?php _e('Filed'); ?> <?php the_time('F jS, Y'); ?> <?php _e("under"); ?> <?php the_category(',') ?>
+  </div>
+  <div class="oc-blog-feedback oc-discreetText">
+    <?php wp_link_pages(); ?>
+    <?php comments_popup_link(__('Comments (0)'), __('Comments (1)'), __('Comments (%)')); ?>
+  </div>
+  </div>
+</div>
 
 <?php comments_template(); // Get wp-comments.php template ?>
 
