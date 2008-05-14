@@ -161,6 +161,7 @@ function check_blog_status()
 
       if ( !(($policy == "medium_policy") || ($policy == "open_policy")) )
 	{
+	  auth_redirect();
 	  include(TEMPLATEPATH . '/index-unauthorized.php');
 	  exit;
 	}
