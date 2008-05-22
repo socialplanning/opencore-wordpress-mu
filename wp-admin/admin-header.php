@@ -101,6 +101,25 @@ ul#adminmenu li {
 #oc-content-container .wrap {
   border: none;
 }
+
+#header .wrap,
+#main .wrap,
+#footer .wrap{
+  border: 0 none transparent;
+  background-color: transparent;
+  margin: 0 auto !important;
+}
+
+#main ul#adminmenu {
+  margin: 0;
+}
+
+
+#main #oc-content-container .wrap {
+  background-image: none !important;
+  width: auto;
+}
+
 </style>
 </head>
 <!-- TOPP -->
