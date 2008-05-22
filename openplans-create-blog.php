@@ -115,7 +115,7 @@ echo "Creating the blog with just this admin user for now $firstAdmin with id $f
 $blog_id = wpmu_create_blog($domain, $path, $title, $firstAdminUserID->ID);
 add_blog_option($blog_id, "activated", "true");
 
-/* Set "openplans" as the default theme */
+/* Set the default theme based on the topp_wordpress_theme build setting */
 update_blog_option($blog_id, "template", TOPP_WORDPRESS_THEME);
 update_blog_option($blog_id, "stylesheet", "openplans");
 
