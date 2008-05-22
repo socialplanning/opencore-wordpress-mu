@@ -174,7 +174,7 @@ endforeach;
 </div>
 
 <!-- TOPP -->
-<div class="oc-post-edit-main" style="width: 600px; float: left;">
+<div class="oc-post-edit-main">
 <!-- END TOPP -->
 
 <fieldset id="titlediv">
