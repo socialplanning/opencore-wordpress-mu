@@ -2,30 +2,37 @@
 get_header();
 ?>
 
-<div id="oc-content-main">
+<div id="content">
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-<div class="oc-blog-post oc-clearAfter" id="post-<?php the_ID(); ?>">
-   <div class="oc-blog-headingBlock oc-blog-postTitle" style="position:relative; padding-right: 30px;">
-     <div style="position:absolute;top 15px; right: 10px;"><?php edit_post_link(__('Edit')); ?></div>
-     <h3 class="oc-blog-storytitle oc-biggestText"><a href="<?php the_permalink() ?>" rel="bookmark"><?php the_title(); ?></a></h3>
-     <span class="oc-headingContext oc-discreetText">by <?php the_author_link() ?><!-- at <?php the_time() ?>--></span>
-  </div>
-
-  <div class="oc-blog-storycontent">
-    <?php the_content(__('(more...)')); ?>
-  </div>
-  <div class="oc-blog-meta">
-  <div class="oc-blog-categories oc-discreetText">
-    <?php _e('Filed'); ?> <?php the_time('F jS, Y'); ?> <?php _e("under"); ?> <?php the_category(',') ?>
-  </div>
-  <div class="oc-blog-feedback oc-discreetText">
-    <?php wp_link_pages(); ?>
-    <?php comments_popup_link(__('Comments (0)'), __('Comments (1)'), __('Comments (%)')); ?>
-  </div>
-  </div>
-</div>
+<?php 
+# Determine whether we should be showing the full post or not.
+# 
+$use_full_post = ($counter < 10 && $wp_query->query_vars['paged'] < 2) ? true : false;
+?>
+<div id="post-<?php the_ID(); ?>" class="post fullpost <?php if (in_category(47)) : ?> headlines<?php endif; ?>">
+  <div class="post-header selfclear">
+    <abbr class="post-date" title="<?php the_time('c') ?>"><?php the_time('F j, Y') ?></abbr> <?php comments_popup_link(__('No Comments Yet'), __('1 Comment'), __('% Comments'), __('post-comment-count')); ?>
+  </div><!-- /.post-header -->
+  <div class="post-content">
+    <h2 class="post-title"><a href="<?php the_permalink(); ?>" title="Permalink to &ldquo;<?php the_title(); ?>&rdquo;" rel="bookmark"><?php the_title(); ?></a><?php edit_post_link('Edit', ' (', ')'); ?></h2>
+    <p class="post-author">by <?php the_author_posts_link(); ?></p>
+    <div class="post-entry">
+      <?php ($use_full_post) ? the_content("Continue reading &raquo;") : the_excerpt($excerpt_length=120, $allowedtags='<p><ul><li><img><span><div><a><br><br />', $filter_type='none', $use_more_link=true, $more_link_text="(more...)", $force_more=true, $fakeit=1, $fix_tags=true, $no_more=false, $more_tag='div', $more_link_title='Continue reading this entry', $showdots=true); ?>
+    </div><!-- /.post-entry -->
+  </div><!-- /.post-content -->
+  <?php if (!is_single()) : ?>
+  <div class="post-footer">
+    <div class="selfclear">
+      <?php comments_popup_link(__('No Comments'), __('1 Comment'), __('% Comments'), __('post-comment-count')); ?>
+    </div>
+    <div class="selfclear even">
+      <span class="post-categories">Categorized as: <?php the_category(', ', ''); ?></span>
+    </div>
+  </div><!-- /.post-footer -->
+  <?php endif; ?>
+</div><!-- /.post -->
 
 <?php comments_template(); // Get wp-comments.php template ?>
 
