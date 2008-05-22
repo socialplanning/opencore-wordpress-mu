@@ -116,7 +116,7 @@ $blog_id = wpmu_create_blog($domain, $path, $title, $firstAdminUserID->ID);
 add_blog_option($blog_id, "activated", "true");
 
 /* Set "openplans" as the default theme */
-update_blog_option($blog_id, "template", "openplans");
+update_blog_option($blog_id, "template", TOPP_WORDPRESS_THEME);
 update_blog_option($blog_id, "stylesheet", "openplans");
 
 if (!$blog_id) 
