@@ -1,11 +1,11 @@
 <ul id="sidebar">
-	<li id="searchform-area" class="widget">
+	<!--<li id="searchform-area" class="widget">
 	<div class="widget-content unbordered">		
 	<form id="searchform" action="<?php bloginfo('home'); ?>" method="get">	
     <input type="text" name="s" class="text" value="<?php _e('Search this blog'); ?>" id="s" size="25"  onblur="if(this.value=='') this.value='Search this blog';" onfocus="if(this.value=='Search this blog') this.value='';"	/><input id="search-submit" class="image" type="image" alt="Search" src="/++resource++woonerf/img/search.png" />	
 </form>	
 	</div>
-  </li>
+  </li>-->
   <?php if (current_user_can('publish_posts')) : ?>
   <li class="widget unbordered">
     <div class="oc-getstarted selfclear">
@@ -46,21 +46,23 @@
     </div>
   </li>
 
+<!--
   <?php wp_list_bookmarks('title_li=&title_before=<div class=widget-header><h2>&title_after=</h2></div><div class=widget-content><ul>&class=widget'); 
   
   # [TODO] wp_list_bookmarks appears to generate unclosed markup - explore ways to not require these external closing div and li tags
   ?>
   </div>
   </li>
+-->
 
   <li class="widget">
     <div class="widget-header">
-      <h2><?php _e('Feeds'); ?></h2>
+      <h2><?php _e('Syndicate'); ?></h2>
           </div>
     <div class="widget-content selfclear">
     <ul class="oc-plainList">
-      <li><a href="<?php bloginfo('rss2_url'); ?>" title="<?php _e('Syndicate this site using RSS'); ?>"><?php _e('Articles <abbr title="Really Simple Syndication">RSS</abbr>'); ?></a></li>
-      <li><a href="<?php bloginfo('comments_rss2_url'); ?>" title="<?php _e('The latest comments to all posts in RSS'); ?>"><?php _e('Comments <abbr title="Really Simple Syndication">RSS</abbr>'); ?></a></li>
+      <li><a href="<?php bloginfo('rss2_url'); ?>" title="<?php _e('Syndicate this site using RSS'); ?>"><?php _e('Articles <abbr title="Really Simple Syndication">RSS</abbr> Feed'); ?></a></li>
+      <li><a href="<?php bloginfo('comments_rss2_url'); ?>" title="<?php _e('The latest comments to all posts in RSS'); ?>"><?php _e('Comments <abbr title="Really Simple Syndication">RSS</abbr> Feed'); ?></a></li>
       <?php wp_meta(); ?>
     </ul>
   </div>
