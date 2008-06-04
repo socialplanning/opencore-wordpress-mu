@@ -17,7 +17,7 @@ $use_full_post = ($counter < 10 && $wp_query->query_vars['paged'] < 2) ? true : 
   </div><!-- /.post-header -->
   <div class="post-content">
     <h2 class="post-title"><a href="<?php the_permalink(); ?>" title="Permalink to &ldquo;<?php the_title(); ?>&rdquo;" rel="bookmark"><?php the_title(); ?></a><?php edit_post_link('Edit', ' (', ')'); ?></h2>
-    <p class="post-author">by <?php the_author_posts_link(); ?></p>
+    <p class="post-author">by <?php the_author_link(); ?></p>
     <div class="post-entry">
       <?php ($use_full_post) ? the_content("Continue reading &raquo;") : the_excerpt($excerpt_length=120, $allowedtags='<p><ul><li><img><span><div><a><br><br />', $filter_type='none', $use_more_link=true, $more_link_text="(more...)", $force_more=true, $fakeit=1, $fix_tags=true, $no_more=false, $more_tag='div', $more_link_title='Continue reading this entry', $showdots=true); ?>
     </div><!-- /.post-entry -->
