@@ -31,6 +31,7 @@ if ($sig != $expect)
 
 
 $email = $_POST['email'];
+$display_name = $_POST['display_name'];
 
 $checkUser = $wpdb->get_row("SELECT * FROM $wpdb->users WHERE user_login = '$username'");
 $checkEmail = $wpdb->get_row("SELECT user_email FROM $wpdb->users WHERE user_email = '$email' AND user_login != '$username'");
@@ -52,10 +53,11 @@ if ($checkEmail)
 if ($checkUser && !$checkEmail)
 {
   status_header(200);
-  echo "Changing email for user : $username";
+  echo "Changing data for user : $username\n";
   $email = $wpdb->escape($email);
   $oldEmail = $wpdb->get_row("SELECT user_email FROM $wpdb->users WHERE user_login = '$username' ");
-  $wpdb->query("UPDATE $wpdb->users SET user_email='$email' WHERE ID= $checkUser->ID;");
+  echo "query: UPDATE $wpdb->users SET user_email='$email', display_name='$display_name' WHERE ID= $checkUser->ID;\n";
+  $wpdb->query("UPDATE $wpdb->users SET user_email='$email', display_name='$display_name' WHERE ID= $checkUser->ID;");
   $blogs = get_blogs_of_user ( $checkUser->ID );
   foreach ($blogs as $blog)
     {
