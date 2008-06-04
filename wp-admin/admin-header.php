@@ -59,6 +59,7 @@ legend {
 }
 #oc-content-container {
   padding-top: 0 !important;
+  position: relative;
 }
 #wphead, #user_info, #minisub, iframe#uploading {
   display: none;
@@ -71,10 +72,9 @@ legend {
   margin-right: 1em !important;
 }
 #poststuff #moremeta {
-  float: right !important;
-  margin: 0 0 0 2em !important;
-  position: relative !important;
-  right: 0 !important;
+  margin: 80px 0 0 2em !important;
+  position: absolute !important;
+  right: 80px !important;
 }
 
 ul#adminmenu {
@@ -118,6 +118,10 @@ ul#adminmenu li {
 #main #oc-content-container .wrap {
   background-image: none !important;
   width: auto;
+}
+
+fieldset#postdivrich legend {
+  display: none;
 }
 
 </style>
