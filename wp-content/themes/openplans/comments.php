@@ -52,7 +52,11 @@
 <input type="hidden" name="user_email" value="<?php echo($user_email); ?>" />
 <input type="hidden" name="user_url" value="<?php echo($user_url); ?>" />
 </div>
+
+<?php if ( ($policy == "open_policy") || ($policy == "medium_policy") ) : ?>
 <div id="openplans_info">
+<?php endif; ?>
+
 </div>
 
 <?php else : ?>
