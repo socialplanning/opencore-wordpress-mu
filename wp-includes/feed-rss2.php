@@ -11,6 +11,7 @@ $more = 1;
 	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
 	xmlns:dc="http://purl.org/dc/elements/1.1/"
 	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+        xmlns:opencore="http://www.openplans.org/opencore"
 	<?php do_action('rss2_ns'); ?>
 >
 
@@ -30,6 +31,7 @@ $more = 1;
         	<slash:comments><?php comments_number('0','1','%'); ?></slash:comments> 
 		<pubDate><?php echo mysql2date('D, d M Y H:i:s +0000', get_post_time('Y-m-d H:i:s', true), false); ?></pubDate>
 		<dc:creator><?php the_author() ?></dc:creator>
+                <opencore:userid><?php the_author_login(); ?></opencore:userid>
 		<?php the_category_rss() ?>
 
 		<guid isPermaLink="false"><?php the_guid(); ?></guid>
