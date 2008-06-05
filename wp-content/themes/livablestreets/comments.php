@@ -52,8 +52,16 @@
 <input type="hidden" name="user_email" value="<?php echo($user_email); ?>" />
 <input type="hidden" name="user_url" value="<?php echo($user_url); ?>" />
 </div>
+
+
+<?php 
+global $policy;
+if ( ($policy == "open_policy") || ($policy == "medium_policy") ) : ?>
 <div id="openplans_info">
+
 </div>
+
+<?php endif; ?>
 
 <?php else : ?>
 
