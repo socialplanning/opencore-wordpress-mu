@@ -133,6 +133,7 @@ function check_blog_status()
   $adminInfo = trim(file_get_contents(TOPP_ADMIN_INFO_FILENAME));
   list($usr, $pass) = split(":", $adminInfo);
   $file = _fetch_remote_file1($url, $usr, $pass);
+  global $policy;
 
   if (!strchr($file->response_code, "200"))
     {
@@ -147,8 +148,6 @@ function check_blog_status()
     }
   
   $isMember = is_user_member_of_blog($current_user->id, $wpdb->blogid);
-  if (!$isMember)
-    {
       xml_parse_into_struct($xmlparser, $project_policy, $vals, $index);      
 
       foreach ($vals as $val)
@@ -158,6 +157,9 @@ function check_blog_status()
 	      $policy = $val["value"];
 	    }
 	}
+
+  if (!$isMember)
+    {
 
       if ( !(($policy == "medium_policy") || ($policy == "open_policy")) )
 	{
