@@ -72,9 +72,14 @@ legend {
   margin-right: 1em !important;
 }
 #poststuff #moremeta {
-  margin: 80px 0 0 2em !important;
+  margin: 0 0 0 2em !important;
   position: absolute !important;
-  right: 80px !important;
+  right: 20px !important;
+}
+
+#poststuff .oc-post-edit-main {
+margin: 0 14.5em 0 0;
+padding: 0 20px 0 0;
 }
 
 ul#adminmenu {
