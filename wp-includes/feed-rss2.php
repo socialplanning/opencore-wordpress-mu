@@ -40,9 +40,9 @@ $more = 1;
 <?php else : ?>
 		<description><![CDATA[<?php the_excerpt_rss() ?>]]></description>
 	<?php if ( strlen( $post->post_content ) > 0 ) : ?>
-		<content:encoded><![CDATA[<?php the_content() ?>]]></content:encoded>
+		<content:encoded xml:base="<?php permalink_single_rss() ?>"><![CDATA[<?php the_content() ?>]]></content:encoded>
 	<?php else : ?>
-		<content:encoded><![CDATA[<?php the_excerpt_rss() ?>]]></content:encoded>
+		<content:encoded xml:base="<?php permalink_single_rss() ?>"><![CDATA[<?php the_excerpt_rss() ?>]]></content:encoded>
 	<?php endif; ?>
 <?php endif; ?>
 		<wfw:commentRss><?php echo comments_rss(); ?></wfw:commentRss>
