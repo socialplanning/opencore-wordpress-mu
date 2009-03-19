@@ -180,7 +180,7 @@ function check_blog_status()
 function _fetch_remote_file1 ($url, $username, $password,  $headers = "" )
 	{
 	  // Snoopy is an HTTP client in PHP
-	  require_once("Snoopy.class.php");
+	  require_once(ABSPATH."Snoopy.class.php");
 	  $client = new Snoopy();
 	  $client->user = $username;
 	  $client->pass = $password;
