@@ -29,7 +29,7 @@ function feedbacker_send_new_comment($comment_id) {
    $author_map = Array ('name'=> $comment->comment_author, 'email'=>$comment->comment_author_email,
                         'uri'=>$comment->comment_author_url);
    // set the target url
-   $postdata = Array ('title'=>json_encode(''), 
+   $postdata = Array ('title'=>json_encode($post->post_title), 
                       'updated'=>json_encode("@".strtotime($comment->comment_date)."@"),
                       'object_type'=>json_encode('comment'), 
                       'action'=>json_encode('comment posted'),
