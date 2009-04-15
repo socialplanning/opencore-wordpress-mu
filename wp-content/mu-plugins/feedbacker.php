@@ -29,15 +29,17 @@ function feedbacker_send_new_comment($comment_id) {
    $author_map = Array ('name'=> $comment->comment_author, 'email'=>$comment->comment_author_email,
                         'uri'=>$comment->comment_author_url);
    // set the target url
+   $updated = strtotime($comment->comment_date)-date('Z');
+   $published = $updated;
    $postdata = Array ('title'=>json_encode($post->post_title), 
-                      'updated'=>json_encode("@".strtotime($comment->comment_date)."@"),
+                      'updated'=>json_encode("@".$updated."@"),
                       'object_type'=>json_encode('comment'), 
                       'action'=>json_encode('comment posted'),
                       'author'=>json_encode($author_map),
                       'summary'=>json_encode(''),
                       'content'=>json_encode($comment->comment_content),
                       'link'=>json_encode($post->guid."#comment-".$comment_id), 
-                      'published'=>json_encode("@".strtotime($comment->comment_date)."@"),
+                      'published'=>json_encode("@".$published."@"),
                       'rights'=>json_encode(''),
                       'project'=>json_encode($_SERVER['HTTP_X_OPENPLANS_PROJECT']), 
                       'closed'=>json_encode($policy),
@@ -86,15 +88,17 @@ function feedbacker_send_new_post($post_id) {
    $author_map = Array ('name'=> $author->display_name, 'email'=>$author->user_email,
                         'uri'=>"http://www.livablestreets.com/people/".$author->user_login);
    // set the target url
+   $updated = strtotime($post->post_modified)-date('Z');
+   $published = strtotime($post->post_date)-date('Z');
    $postdata = Array ('title'=>json_encode($post->post_title), 
-                      'updated'=>json_encode("@".strtotime($post->post_modified)."@"),
+                      'updated'=>json_encode("@".$updated."@"),
                       'object_type'=>json_encode('blog_post'), 
                       'action'=>json_encode('posted'),
                       'author'=>json_encode($author_map),
                       'summary'=>json_encode($post->post_excerpt),
                       'content'=>json_encode($post->post_content),
                       'link'=>json_encode(get_permalink($post_id)), 
-                      'published'=>json_encode("@".strtotime($post->post_date)."@"),
+                      'published'=>json_encode("@".$published."@"),
                       'rights'=>json_encode(''),
                       'project'=>json_encode($_SERVER['HTTP_X_OPENPLANS_PROJECT']), 
                       'closed'=>json_encode($policy),
