@@ -351,8 +351,8 @@ function populate_roles_160() {
 
 	// Add caps for Administrator role
 	$role = get_role('administrator');
-	//TOPP $role->add_cap('switch_themes');
-	//TOPP $role->add_cap('edit_themes');
+	$role->add_cap('switch_themes');
+	$role->add_cap('edit_themes');
 	//TOPP $role->add_cap('activate_plugins');
 	//TOPP $role->add_cap('edit_plugins');
 	$role->add_cap('edit_users');

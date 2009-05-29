@@ -117,7 +117,7 @@ add_blog_option($blog_id, "activated", "true");
 
 /* Set the default theme based on the topp_wordpress_theme build setting */
 update_blog_option($blog_id, "template", TOPP_WORDPRESS_THEME);
-update_blog_option($blog_id, "stylesheet", "openplans");
+update_blog_option($blog_id, "stylesheet", TOPP_WORDPRESS_THEME);
 
 if (!$blog_id) 
 {

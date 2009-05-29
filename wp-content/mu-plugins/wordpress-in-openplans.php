@@ -31,9 +31,9 @@ Author URI: http://www.openplans.org/people/nickyg
 	global $menu, $submenu;
 	
 	// Presentation - change this to go straight to Widgets
-  	//unset($menu[25]);
+  	unset($menu[25]);
   	$menu[25] = array(__('Sidebar Widgets'), 'switch_themes', 'widgets.php');
-
+    unset($submenu['themes.php'][5]);
   	
   	// Users / Profile
   	unset($menu[35]);

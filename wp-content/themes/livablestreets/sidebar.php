@@ -1,5 +1,6 @@
 <ul id="sidebar">
-	<!--<li id="searchform-area" class="widget">
+ <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar()) { ?>
+    <!--<li id="searchform-area" class="widget">
 	<div class="widget-content unbordered">		
 	<form id="searchform" action="<?php bloginfo('home'); ?>" method="get">	
     <input type="text" name="s" class="text" value="<?php _e('Search this blog'); ?>" id="s" size="25"  onblur="if(this.value=='') this.value='Search this blog';" onfocus="if(this.value=='Search this blog') this.value='';"	/><input id="search-submit" class="image" type="image" alt="Search" src="/++resource++woonerf/img/search.png" />	
@@ -67,5 +68,6 @@
     </ul>
   </div>
   </li>
+<?php } ?>
 </ul><!-- /#sidebar -->
 
