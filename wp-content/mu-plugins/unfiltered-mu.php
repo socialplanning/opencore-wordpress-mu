@@ -33,8 +33,10 @@ function um_unfilter_roles() {
 	global $wp_roles;
 	// Dont use get_role() wrapper, it doesn't work as a one off.
 	// (get_role does not properly return as reference)
-	$wp_roles->role_objects['administrator']->add_cap( 'unfiltered_html' );
-	$wp_roles->role_objects['editor']->add_cap( 'unfiltered_html' );
+        if (method_exists($wp_roles->role_objects['administrator'], 'add_cap')) {
+	  $wp_roles->role_objects['administrator']->add_cap( 'unfiltered_html' );
+	  $wp_roles->role_objects['editor']->add_cap( 'unfiltered_html' );
+        }
 }
 
 function um_refilter_roles() {

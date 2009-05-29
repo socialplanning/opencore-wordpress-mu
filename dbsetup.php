@@ -3,6 +3,7 @@
 define('WP_INSTALLING', true);
 require_once(dirname(__FILE__) . '/wp-config.php');
 require_once(dirname(__FILE__) . '/openplans-auth.php');
+require_once(dirname(__FILE__) . '/wp-includes/capabilities.php');
 if ($_SERVER['argv']) {
     if ($_SERVER['argv'][1] != get_openplans_secret()) {
         header('Status: 400 Bad Request');
