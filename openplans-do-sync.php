@@ -1,7 +1,5 @@
 <?php
 
-$url_members = "http://anil:4570/openplans/people/all.xml";
-
 class user_profile
 {
   var $username = '';
@@ -30,8 +28,6 @@ if ($sig != $expect)
   die("Signature '$sig' invalid for domain '$domain'");
 }
 
-$resp = _fetch_remote_file( $url_members, "admin", "admin" );
-//$users = _parse_user_file($resp->results);
 $users = _parse_user_file($all_members);
 update_wp_users_table($users);
 status_header(200);
@@ -57,7 +53,7 @@ function _parse_user_file ($data)
       die ("Cannot create parser");
     }
 
-  $data=eregi_replace(">"."[[:space:]]+"."<","><",$data);
+  $data=preg_replace("/>"."[[:space:]]+"."</i","><",$data);
   xml_parse_into_struct($xmlparser, $data, $vals, $index);
 
   $users = array();
