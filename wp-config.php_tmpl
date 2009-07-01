@@ -19,6 +19,7 @@ define('TOPP_SECRET_FILENAME', $fassembler_general_settings['topp_secret_filenam
 define('TOPP_ADMIN_INFO_FILENAME', $fassembler_general_settings['admin_info_filename']);
 $fassembler_applications = $fassembler_settings['applications'];
 define('TOPP_ZOPE_URI', $fassembler_applications['opencore uri']);
+define('TOPP_FEEDBACKER_URI', $fassembler_applications['feedbacker uri']);
 define('TOPP_WORDPRESS_THEME', $fassembler_applications['topp_wordpress_theme']);
 
 /* Don't try to create this file by hand. Read the README.txt and run the installer. */

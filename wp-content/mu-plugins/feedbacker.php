@@ -57,7 +57,7 @@ function feedbacker_send_new_comment($comment_id) {
 
    $postdata_str = urlencode_array($postdata, "", "&");
 
-   $url = "http://localhost:15008";
+   $url = TOPP_FEEDBACKER_URI;
    $ch = curl_init();
    curl_setopt($ch, CURLOPT_POST, sizeof($postdata));
    curl_setopt($ch, CURLOPT_POSTFIELDS,$postdata_str);
@@ -104,19 +104,9 @@ function feedbacker_send_new_post($post_id) {
                       'closed'=>json_encode($policy),
                       'categories'=>json_encode($cats));
 
-//   $myFile = "/usr/local/topp/phpdebug.txt";
-//   $fh = fopen($myFile, 'w') or die("can't open file");
-//
-//   foreach ($postdata as $key=>$value) {
-//         $stringData = "$key => $value \n";
-//           fwrite($fh, $stringData);
-//   }
-//
-//   fclose($fh);
-
    $postdata_str = urlencode_array($postdata, "", "&");
 
-   $url = "http://localhost:15008";
+   $url = TOPP_FEEDBACKER_URI;
    $ch = curl_init();
    curl_setopt($ch, CURLOPT_POST, sizeof($postdata));
    curl_setopt($ch, CURLOPT_POSTFIELDS,$postdata_str);
