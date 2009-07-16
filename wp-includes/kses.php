@@ -633,7 +633,9 @@ function wp_kses_array_lc($inarray)
 ###############################################################################
 {
 	$outarray = array ();
-
+    if (!is_array($inarray)) {
+      return $inarray;
+    }
 	foreach ($inarray as $inkey => $inval) {
 		$outkey = strtolower($inkey);
 		$outarray[$outkey] = array ();
