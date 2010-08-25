@@ -53,13 +53,6 @@ if (empty($post->post_status)) $post->post_status = 'draft';
 ?>
 
   <!-- TOPP addition -->
-    <link type="text/css" rel="stylesheet" title="blue-look" href="/++resource++xinha/skins/blue-look/skin.css" />
-    <link type="text/css" rel="alternate stylesheet" title="green-look" href="/++resource++xinha/skins/green-look/skin.css" />
-    <link type="text/css" rel="alternate stylesheet" title="xp-blue" href="/++resource++xinha/skins/xp-blue/skin.css" />
-    <link type="text/css" rel="alternate stylesheet" title="xp-green" href="/++resource++xinha/skins/xp-green/skin.css" />
-    <link type="text/css" rel="alternate stylesheet" title="inditreuse" href="/++resource++xinha/skins/inditreuse/skin.css" />
-    <link type="text/css" rel="alternate stylesheet" title="blue-metallic" href="/++resource++xinha/skins/blue-metallic/skin.css" />
-    
     <style>
     table.htmlarea {
     
@@ -68,17 +61,7 @@ if (empty($post->post_status)) $post->post_status = 'draft';
     }
     </style>
 
-    <script type="text/javascript">
-    var _editor_url = "/++resource++xinha/";
-    var _editor_lang = "en";
-    var xinha_editor = "content";
-    </script>
-    
-    <!-- Load up the actual editor core -->
-    <script type="text/javascript" src="/++resource++xinha/XinhaCore.js"></script>
-    <script type="text/javascript" src="/++resource++xinha/xinhaconfig.js"></script>
-    <!-- END TOPP addition-->
-
+    <div class="opencore_wysiwyg"></div>
 
 <input type="hidden" name="user_ID" value="<?php echo (int) $user_ID ?>" />
 <input type="hidden" id="hiddenaction" name="action" value="<?php echo $form_action ?>" />
