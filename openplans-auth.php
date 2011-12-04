@@ -54,7 +54,7 @@ function check_openplans_cookie() {
 
     list($username, $auth) = explode("\0", $c, 2);
 # FIXME: failure?
-    $auth = substr($auth, 0, strlen($auth)-$numToStrip);
+    $auth = substr($auth, 0, strlen($auth)-floor($numToStrip));
     $auth = chop($auth);
     $secret = get_openplans_secret();
     $expect = hash_hmac("sha1", $username, $secret, false);
